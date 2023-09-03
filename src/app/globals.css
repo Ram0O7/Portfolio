@@ -1,3 +1,145 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap"); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  background-color: #141414;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  scroll-behavior: smooth;
+}
+main {
+  padding-inline: 5vw;
+}
+
+.skill_slide {
+  animation: slide 20s infinite linear;
+  animation-fill-mode: forwards;
+}
+.skill_container:hover .skill_slide {
+  animation-play-state: paused;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2465px);
+  }
+}
+.logo-animation {
+  background: linear-gradient(to left, #19a7ce, #717171);
+  animation: gradient_wave 5s linear infinite alternate;
+}
+@keyframes gradient_wave {
+  0% {
+    background-size: 10%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  100% {
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+nav ul,
+.profile-img {
+  width: min(60vw, 30rem);
+}
+nav ul {
+  z-index: 999;
+}
+nav ul li a {
+  color: white;
+}
+
+.profile-img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #717171;
+  background-size: 100%;
+  filter: grayscale(0.4);
+  opacity: 0.85;
+  transition: background-size 0.5s ease-in-out;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: 70%;
+  height: 2px;
+  background-color: #19a7ce;
+  transition: width 0.2s ease-in;
+}
+.btn:hover::after {
+  width: 100%;
+}
+
+form {
+  width: min(100%, 25rem);
+}
+form > div input,
+form > div textarea {
+  width: 100%;
+  outline: none;
+  padding: 1rem;
+  background: none;
+  border-bottom: 1px solid #717171;
+}
+form > div input::placeholder,
+form > div textarea::placeholder {
+  text-transform: uppercase;
+  color: #717171;
+}
+
+svg:hover {
+  filter: drop-shadow(2px 5px 25px rgb(255 255 255 / 0.4));
+}
+
+@media (min-width: 768px) {
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-2915px);
+    }
+  }
+
+  main {
+    padding-inline: 5vw;
+  }
+  .profile-img {
+    height: 32rem;
+    width: 20rem;
+    top: 0;
+    right: 0;
+    left: unset;
+  }
+  .profile-img:hover {
+    background-size: 120%;
+  }
+}
+@media (min-width: 1024px) {
+  main {
+    padding-inline: 15vw;
+  }
+  .profile-img {
+    height: 35rem;
+    width: 22rem;
+    top: 0;
+    right: 15vw;
+    left: unset;
+  }
+}
