@@ -22,12 +22,9 @@ const Project = () => {
   };
 
   return (
-    <div
-      id="project_container"
-      className="py-8 lg:py-16 border-b border-text-primary"
-    >
+    <div id="project_container" className="py-8 lg:py-16">
       <div className="flex justify-between items-center">
-        <h1 className="text-4xl lg:text-5xl font-semibold sm:font-bold">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold sm:font-bold">
           Projects
         </h1>
         <Button url="/#contact" text="contact me" />

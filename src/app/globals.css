@@ -5,8 +5,8 @@
 
 html,
 body {
-  background-color: #141414;
-  color: white;
+  background-color: #212738;
+  color: #ffffff;
   font-family: "Raleway", sans-serif;
   scroll-behavior: smooth;
 }
@@ -18,7 +18,7 @@ main {
   animation: slide 20s infinite linear;
   animation-fill-mode: forwards;
 }
-.skill_container:hover .skill_slide {
+.skill_slide:hover {
   animation-play-state: paused;
 }
 
@@ -31,7 +31,7 @@ main {
   }
 }
 .logo-animation {
-  background: linear-gradient(to left, #19a7ce, #717171);
+  background: linear-gradient(to left, #3fa7ca, #f97068);
   animation: gradient_wave 5s linear infinite alternate;
 }
 @keyframes gradient_wave {
@@ -49,8 +49,7 @@ main {
   }
 }
 
-nav ul,
-.profile-img {
+nav ul {
   width: min(60vw, 30rem);
 }
 nav ul {
@@ -61,13 +60,36 @@ nav ul li a {
 }
 
 .profile-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #717171;
+  background-color: #c4c4c4;
   background-size: 100%;
+  background-clip: content-box;
   filter: grayscale(0.4);
-  opacity: 0.85;
-  transition: background-size 0.5s ease-in-out;
+  opacity: 0.5;
+  overflow: hidden;
+  border-radius: 0.25rem;
+}
+
+.profile-img::before {
+  content: "";
+  position: absolute;
+  background: linear-gradient(to top, #3fa7ca, #f97068);
+  width: 100px;
+  height: 140%;
+  transform: rotate(-145deg);
+  border-radius: inherit;
+}
+.profile-img::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: inherit;
+  border-radius: inherit;
 }
 
 .btn::after {
@@ -79,32 +101,29 @@ nav ul li a {
   margin-inline: auto;
   width: 70%;
   height: 2px;
-  background-color: #19a7ce;
+  background-color: #f97068;
   transition: width 0.2s ease-in;
 }
 .btn:hover::after {
   width: 100%;
 }
 
-form {
-  width: min(100%, 25rem);
-}
 form > div input,
 form > div textarea {
   width: 100%;
   outline: none;
   padding: 1rem;
   background: none;
-  border-bottom: 1px solid #717171;
+  border-bottom: 1px solid #c4c4c4;
 }
 form > div input::placeholder,
 form > div textarea::placeholder {
   text-transform: uppercase;
-  color: #717171;
+  color: #c4c4c4;
 }
 
-svg:hover {
-  filter: drop-shadow(2px 5px 25px rgb(255 255 255 / 0.4));
+.skill:hover svg {
+  filter: drop-shadow(2px 5px 25px rgb(255 255 255 / 0.2));
 }
 
 @media (min-width: 768px) {
@@ -120,26 +139,10 @@ svg:hover {
   main {
     padding-inline: 5vw;
   }
-  .profile-img {
-    height: 32rem;
-    width: 20rem;
-    top: 0;
-    right: 0;
-    left: unset;
-  }
-  .profile-img:hover {
-    background-size: 120%;
-  }
 }
+
 @media (min-width: 1024px) {
   main {
     padding-inline: 15vw;
-  }
-  .profile-img {
-    height: 35rem;
-    width: 22rem;
-    top: 0;
-    right: 15vw;
-    left: unset;
   }
 }

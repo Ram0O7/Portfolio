@@ -66,10 +66,10 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="contact_form flex flex-col sm:flex-row justify-between gap-8 font-bold text-center sm:text-left pb-8 lg:pb-16 border-b border-text-primary"
+      className="contact_form flex flex-col sm:grid grid-cols-2 w-full justify-between gap-8 font-bold text-center sm:text-left py-8 lg:py-16 border-t border-text-primary"
     >
       <div className="flex flex-col gap-4 lg:gap-8">
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl">Contacts</h1>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl">Get in touch!</h1>
         <p className="text-xs sm:text-sm max-w-sm text-text-primary">
           I would love to hear about your project and how I could help. Please
           fill in the form, and I'll get back to you as soon as possible.
