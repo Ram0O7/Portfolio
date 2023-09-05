@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "Blog",
@@ -19,17 +20,33 @@ export default function Blog() {
   });
 
   return (
-    <div className="flex flex-col gap-8 py-12">
-      <h1 className="text-3xl text-red-500 font-extralight">
-        This is my blog page
-      </h1>
-      <div className="blogs flex flex-col gap-4">
+    <div className="py-12">
+      <div className="blogs flex flex-col gap-10 sm:gap-12">
         {blogs.map((blog) => {
           return (
-            <Link href={"/blogs/" + blog.slug} passHref key={blog.slug}>
-              <h1>{blog.meta.title}</h1>
-              <p>{blog.meta.description}</p>
-              <span>{blog.meta.date}</span>
+            <Link
+              href={"/blogs/" + blog.slug}
+              passHref
+              key={blog.slug}
+              className="flex flex-col sm:flex-row justify-between items-center gap-6"
+            >
+              <div className="relative w-full sm:w-96 h-60 sm:h-48">
+                <Image
+                  src={`${blog.meta.thumbnail}`}
+                  alt="blog image"
+                  fill={true}
+                  className="object-cover rounded-sm"
+                />
+              </div>
+              <div className="flex flex-col gap-2 sm:gap-4">
+                <span className="text-xs text-text-primary">
+                  {blog.meta.date}
+                </span>
+                <h1 className="text-2xl sm:text-3xl">{blog.meta.title}</h1>
+                <p className="text-sm text-text-primary">
+                  {blog.meta.description}
+                </p>
+              </div>
             </Link>
           );
         })}

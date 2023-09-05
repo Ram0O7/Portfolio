@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import Button from "@/UI/Button/Button";
 import projects from "@/utils/projects";
 import referToComponent from "@/utils/refer";
+import Image from "next/image";
 
 const Project = () => {
   const [load, setLoad] = useState(4);
@@ -38,16 +39,16 @@ const Project = () => {
                 className="project flex flex-col gap-2"
                 key={Date.now() * Math.random()}
               >
-                <div className="project_img relative group">
-                  <div className="hidden group-hover:lg:flex flex-col justify-center items-center gap-8 absolute top-0 left-0 w-full h-full bg-backdrop text-lg">
+                <div className="project_img relative group w-full h-64 sm:h-80">
+                  <div className="hidden group-hover:lg:flex flex-col justify-center items-center gap-8 absolute top-0 left-0 w-full h-full bg-backdrop text-lg z-20">
                     <Button text={"view project"} url={website} />
                     <Button text={"view code"} url={repo} />
                   </div>
-                  <img
+                  <Image
                     className="object-cover"
                     src={img}
                     alt={name}
-                    loading="lazy"
+                    fill={true}
                   />
                 </div>
                 <h1 className="text-xl lg:text-2xl font-bold">{name}</h1>

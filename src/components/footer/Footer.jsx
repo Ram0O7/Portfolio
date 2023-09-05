@@ -12,7 +12,11 @@ const Footer = ({ socials }) => {
             const { name, url, icon, style } = social;
             return (
               <li key={name}>
-                <Link className={style} href={url}>
+                <Link
+                  className={style}
+                  href={url}
+                  aria-label={`${name} account`}
+                >
                   {icon}
                 </Link>
               </li>

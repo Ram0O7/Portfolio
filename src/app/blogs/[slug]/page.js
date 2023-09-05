@@ -2,8 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
-// import SyntaxHighlighter from "react-syntax-highlighter";
-// import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import CodeHighlight from "@/lib/CodeHighlight";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
@@ -42,10 +41,10 @@ export default function Page({ params }) {
   const props = getPost(params.slug);
 
   return (
-    <div className="py-12 lg:py-28">
-      <article className="prose prose-sm md:prose-base lg:prose-lg !prose-invert prose-slate prose-img:rounded-sm max-w-none">
-        <MDXRemote source={props.content}></MDXRemote>
+    <CodeHighlight>
+      <article className="prose prose-sm sm:prose-base prose-headings:font-semibold lg:prose-lg !prose-invert prose-slate prose-orange prose-img:rounded-sm max-w-none">
+        <MDXRemote source={props.content} />
       </article>
-    </div>
+    </CodeHighlight>
   );
 }

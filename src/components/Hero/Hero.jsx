@@ -1,4 +1,3 @@
-import referToComponent from "@/utils/refer";
 import Button from "@/UI/Button/Button";
 
 const Hero = () => {

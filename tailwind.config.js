@@ -17,7 +17,7 @@ module.exports = {
         "bg-primary": "#3fa7ca",
         "bg-secondary": "#f97068",
         "text-primary": "#c4c4c4",
-        backdrop: "#212738a",
+        backdrop: "#212738aa",
       },
     },
   },
