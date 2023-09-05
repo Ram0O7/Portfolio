@@ -11,9 +11,9 @@ module.exports = {
       },
       {
         protocol: "https",
-        hostname: "res.cloudinary.com",
+        hostname: "source.unsplash.com",
         port: "",
-        pathname: "/**",
+        pathname: "/random/**",
       },
     ],
   },

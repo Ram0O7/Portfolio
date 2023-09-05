@@ -1,8 +1,6 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 import Link from "next/link";
 import Image from "next/image";
+import blogs from "@/lib/BlogMetaData";
 
 export const metadata = {
   title: "Blog",
@@ -11,14 +9,6 @@ export const metadata = {
 };
 
 export default function Blog() {
-  const blogDir = "blogs";
-  const files = fs.readdirSync(path.join(blogDir));
-  const blogs = files.map((filename) => {
-    const fileContent = fs.readFileSync(path.join(blogDir, filename), "utf-8");
-    const { data: frontMatter } = matter(fileContent);
-    return { meta: frontMatter, slug: filename.replace(".mdx", "") };
-  });
-
   return (
     <div className="py-12">
       <div className="blogs flex flex-col gap-10 sm:gap-12">
@@ -28,17 +18,19 @@ export default function Blog() {
               href={"/blogs/" + blog.slug}
               passHref
               key={blog.slug}
-              className="flex flex-col sm:flex-row justify-between items-center gap-6"
+              className="flex flex-col sm:grid grid-cols-6 justify-between items-center gap-6"
             >
-              <div className="relative w-full sm:w-96 h-60 sm:h-48">
+              <div className="relative w-full h-60 sm:h-48 col-span-2">
                 <Image
                   src={`${blog.meta.thumbnail}`}
                   alt="blog image"
                   fill={true}
+                  placeholder="blur"
+                  blurDataURL="/images/backgroundEffect.jpg"
                   className="object-cover rounded-sm"
                 />
               </div>
-              <div className="flex flex-col gap-2 sm:gap-4">
+              <div className="flex flex-col gap-2 sm:gap-4 col-span-4">
                 <span className="text-xs text-text-primary">
                   {blog.meta.date}
                 </span>

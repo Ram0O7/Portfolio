@@ -47,6 +47,9 @@ const Project = () => {
                   <Image
                     className="object-cover"
                     src={img}
+                    quality={60}
+                    placeholder="blur"
+                    blurDataURL="/images/backgroundEffect.jpg"
                     alt={name}
                     fill={true}
                   />

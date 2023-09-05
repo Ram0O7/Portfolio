@@ -6,7 +6,6 @@ html,
 body {
   background-color: #212738;
   color: #ffffff;
-  font-family: "Raleway", sans-serif;
   scroll-behavior: smooth;
 }
 main {
@@ -65,7 +64,7 @@ nav ul li a {
   align-items: center;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #c4c4c4;
+  background-color: #2127385f;
   background-size: 100%;
   background-clip: content-box;
   filter: grayscale(0.4);
@@ -82,7 +81,9 @@ nav ul li a {
   height: 140%;
   transform: rotate(-145deg);
   border-radius: inherit;
+  animation: rotate 5s infinite linear;
 }
+
 .profile-img::after {
   content: "";
   position: absolute;
