@@ -5,11 +5,21 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const emailEndpoint = process.env.NEXT_PUBLIC_EMAILENDPOINT;
-const emailUserData = async (body) => {
-  await axios
-    .post(emailEndpoint, body)
+
+const emailUserData = async (name, email, message) => {
+  const body = JSON.stringify({
+    senderName: name,
+    senderEmail: email,
+    message: message,
+  });
+  const requestOptions = {
+    method: "POST",
+    body,
+  };
+  const response = await fetch(emailEndpoint, requestOptions)
     .then((response) => {
-      if (!response.ok) throw new Error("Error in fetch!");
+      if (!response.ok) throw new Error("Error in fetch");
+      console.log(response);
       return response.json();
     })
     .catch((error) => {
@@ -36,11 +46,7 @@ const postFormData = async (name, email, message, toastId) => {
           autoClose: 5000,
         });
         //email user data to my email account
-        emailUserData({
-          senderName: name,
-          senderEmail: email,
-          message: message,
-        });
+        emailUserData(name, email, message);
       } else {
         throw new error("something went wrong!");
       }
