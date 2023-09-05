@@ -4,6 +4,18 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const emailEndpoint = process.env.NEXT_PUBLIC_EMAILENDPOINT;
+const emailUserData = async (body) => {
+  await axios
+    .post(emailEndpoint, body)
+    .then((response) => {
+      if (!response.ok) throw new Error("Error in fetch!");
+      return response.json();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 const postFormData = async (name, email, message, toastId) => {
   const result = await axios
     .post(
@@ -22,6 +34,12 @@ const postFormData = async (name, email, message, toastId) => {
           render: "Thanks for reaching out!",
           type: toast.TYPE.SUCCESS,
           autoClose: 5000,
+        });
+        //email user data to my email account
+        emailUserData({
+          senderName: name,
+          senderEmail: email,
+          message: message,
         });
       } else {
         throw new error("something went wrong!");

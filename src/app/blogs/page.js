@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import blogs from "@/lib/BlogMetaData";
+import { isoToLongDateString } from "@/lib/DateFromatted";
 
 export const metadata = {
   title: "Blog",
@@ -32,7 +33,7 @@ export default function Blog() {
               </div>
               <div className="flex flex-col gap-2 sm:gap-4 col-span-4">
                 <span className="text-xs text-text-primary">
-                  {blog.meta.date}
+                  {isoToLongDateString(blog.meta.date)}
                 </span>
                 <h1 className="text-2xl sm:text-3xl">{blog.meta.title}</h1>
                 <p className="text-sm text-text-primary">
