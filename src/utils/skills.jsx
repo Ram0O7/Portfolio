@@ -1,4 +1,4 @@
-export default [
+const skills = [
   {
     language: "HTML",
     experience: "2 years experience",
@@ -592,3 +592,5 @@ export default [
     ),
   },
 ];
+
+export default skills;

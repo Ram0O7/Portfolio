@@ -1,4 +1,4 @@
-export default [
+const projects = [
   {
     name: "TODO Web App",
     img: "https://res.cloudinary.com/dn6bzdlno/image/upload/v1692532806/todo_nwkrmh.jpg",
@@ -99,3 +99,5 @@ export default [
     website: "https://ram0o7.github.io/advice-generator-app-main/",
   },
 ];
+
+export default projects;
