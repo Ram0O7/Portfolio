@@ -26,6 +26,7 @@ export default function Blog() {
                   src={`${blog.meta.thumbnail}`}
                   alt="blog image"
                   fill={true}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   placeholder="blur"
                   blurDataURL="/images/backgroundEffect.jpg"
                   className="object-cover rounded-sm"
