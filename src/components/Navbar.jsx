@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { FaMoon, FaSun } from "react-icons/fa";
-
 const navLinks = [
   { name: "blog", url: "/blogs" },
   { name: "contact", url: "/#contact" },
@@ -10,8 +8,8 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between py-4">
       <Link href={"/"}>
-        <h1 className="logo logo-animation text-3xl sm:text-4xl font-extrabold">
-          RK
+        <h1 className="logo logo-animation text-2xl sm:text-3xl lg:text-4xl font-extrabold">
+          ramkrishn
         </h1>
       </Link>
       <div className="flex gap-8 sm:gap-10 items-center">
@@ -22,7 +20,7 @@ const Navbar = () => {
               <li key={name}>
                 <Link
                   href={url}
-                  className="text-sm sm:text-lg text-text-primary hover:text-bg-secondary font-semibold hover:underline underline-offset-2"
+                  className="text-sm sm:text-lg hover:text-orange font-semibold hover:underline underline-offset-2"
                 >
                   {name}
                 </Link>
@@ -30,7 +28,6 @@ const Navbar = () => {
             );
           })}
         </ul>
-        <FaSun className="text-xl" />
       </div>
     </nav>
   );

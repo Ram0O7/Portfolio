@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import Button from "@/UI/Button/Button";
+import Button from "@/components/ui/Button";
 import projects from "@/utils/projects";
 import referToComponent from "@/utils/refer";
 import Image from "next/image";
@@ -40,7 +40,7 @@ const Project = () => {
                 key={Date.now() * Math.random()}
               >
                 <div className="project_img relative group w-full h-64 sm:h-80">
-                  <div className="hidden group-hover:lg:flex flex-col justify-center items-center gap-8 absolute top-0 left-0 w-full h-full bg-backdrop text-lg z-20">
+                  <div className="hidden group-hover:lg:flex flex-col justify-center items-center gap-8 absolute top-0 left-0 w-full h-full bg-black/50 text-lg z-20">
                     <Button text={"view project"} url={website} />
                     <Button text={"view code"} url={repo} />
                   </div>

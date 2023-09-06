@@ -7,17 +7,32 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "profile-img":
-          "url('https://res.cloudinary.com/dn6bzdlno/image/upload/v1692613956/profile_qf2bmd.jpg')",
-        "profile-img2":
-          "url('https://res.cloudinary.com/dn6bzdlno/image/upload/v1692613956/profile_qf2bmd.jpg')",
-      },
       colors: {
-        "bg-primary": "#3fa7ca",
-        "bg-secondary": "#f97068",
-        "text-primary": "#c4c4c4",
-        backdrop: "#212738aa",
+        /****** Colors for Classic Monochrome Theme ******/
+
+        /* Background Color */
+        "monochrome-bg": "#f4f4f4",
+        /* Text Color */
+        "monochrome-txt": "#333",
+        /* Accent Color for Links and Highlights */
+        "monochrome-accent": "#007bff",
+        /* Secondary Accent Color */
+        "monochrome-secondary-accent": "#6c757d",
+        /* Button Background Color */
+        "monochrome-btn": "#007bff",
+
+        /****** Colors for Vibrant and Energetic Theme ******/
+
+        /* Background Color */
+        "energetic-bg": "#f7f7f7",
+        /* Text Color */
+        "energetic-txt": "#333",
+        /* Primary Accent Color */
+        "energetic-accent": "#ff5733",
+        /* Secondary Accent Color */
+        "energetic-secondary-accent-color": "#44bb44",
+        /* Button Background Color */
+        "energetic-btn": "#ff5733",
       },
     },
   },

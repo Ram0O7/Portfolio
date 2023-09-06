@@ -1,4 +1,4 @@
-import skills from "../../utils/skills";
+import skills from "../utils/skills";
 
 const Skill = () => {
   return (

@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { baseURL } from "../../../config";
+import { baseURL } from "../../config";
 
 function sendContactEmail(body) {
   // Define the data you want to send in the request body
@@ -89,11 +89,11 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="contact_form flex flex-col sm:grid grid-cols-2 w-full justify-between gap-8 font-bold text-center sm:text-left py-8 lg:py-16 border-t border-text-primary"
+      className="contact_form flex flex-col sm:grid grid-cols-2 w-full justify-between gap-8 font-bold text-center sm:text-left py-8 lg:py-16 border-t"
     >
       <div className="flex flex-col gap-4 lg:gap-8">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl">Get in touch!</h1>
-        <p className="text-xs sm:text-sm max-w-sm text-text-primary">
+        <p className="text-xs sm:text-sm max-w-sm">
           I would love to hear about your project and how I could help. Please
           fill in the form, and I'll get back to you as soon as possible.
         </p>

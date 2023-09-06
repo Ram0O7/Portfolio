@@ -1,4 +1,4 @@
-import Button from "@/UI/Button/Button";
+import Button from "@/components/ui/Button";
 import Image from "next/image";
 
 const Hero = () => {
@@ -10,7 +10,7 @@ const Hero = () => {
             Nice to meet you!
             <br />
             I'm{" "}
-            <span className="underline underline-offset-4 decoration-bg-primary">
+            <span className="underline underline-offset-4 decoration-blue">
               Ramkrishn Rai
             </span>
             .

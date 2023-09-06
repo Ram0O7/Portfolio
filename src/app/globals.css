@@ -2,14 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /****** Colors for Classic Monochrome Theme ******/
+
+  /* Background Color */
+  --monochrome-background-color: #f4f4f4;
+  /* Text Color */
+  --monochrome-text-color: #333;
+  /* Accent Color for Links and Highlights */
+  --monochrome-accent-color: #007bff;
+  /* Secondary Accent Color */
+  --monochrome-secondary-accent-color: #6c757d;
+  /* Button Background Color */
+  --monochrome-button-background-color: #007bff;
+
+  /* --background-color: The background color for the entire website.
+--text-color: The default text color for content.
+--accent-color: Used for hyperlinks and important highlights.
+--secondary-accent-color: A more muted accent color for secondary elements.
+--button-background-color: Color for buttons to grab attention. */
+
+  /****** Colors for Vibrant and Energetic Theme ******/
+
+  /* Background Color */
+  --energetic-background-color: #f7f7f7;
+  /* Text Color */
+  --energetic-text-color: #333;
+  /* Primary Accent Color */
+  --energetic-accent-color: #ff5733;
+  /* Secondary Accent Color */
+  --energetic-secondary-accent-color: #44bb44;
+  /* Button Background Color */
+  --energetic-button-background-color: #ff5733;
+
+  /* --background-color: Create an inviting background.
+--text-color: A classic text color for readability.
+--primary-accent-color: Use for headings and key elements.
+--secondary-accent-color: Another accent color for variety.
+--button-background-color: Eye-catching color for call-to-action buttons. */
+
+  /****** Colors for Elegant Dark Mode Theme ******/
+
+  /* Background Color */
+  --elegent-background-color: #111;
+  /* Text Color */
+  --elegent-text-color: #ddd;
+  /* Accent Color for Links and Highlights */
+  --elegent-accent-color: #ffcc00;
+  /* Secondary Accent Color */
+  --elegent-secondary-accent-color: #777;
+  /* Button Background Color */
+  --elegent-button-background-color: #ffcc00;
+
+  /* --background-color: Create a visually striking dark background.
+--text-color: Light text color for contrast.
+--accent-color: Bright color for links and emphasis.
+--secondary-accent-color: A more muted accent color for secondary elements.
+--button-background-color: Color that pops for buttons. */
+
+  /****** Colors for Nature-Inspired Theme ******/
+
+  /* Background Color */
+  --nature-background-color: #e4f9f5;
+  /* Text Color */
+  --nature-text-color: #333;
+  /* Green Accent Color */
+  --nature-accent-color: #44bb44;
+  /* Brown Accent Color */
+  --nature-secondary-accent-color: #8b4513;
+  /* Button Background Color */
+  --nature-button-background-color: #44bb44;
+
+  /* --background-color: Soft, nature-inspired background.
+--text-color: A classic text color for readability.
+--green-accent-color: Use for headings and nature-related elements.
+--brown-accent-color: Accent color for a grounded feel.
+--button-background-color: Nature-themed button color. */
+
+  /****** Colors for Futuristic tech Theme ******/
+
+  /* Background Color */
+  --furiastic-background-color: #0f0f0f;
+  /* Text Color */
+  --furiastic-text-color: #ccc;
+  /* Neon Accent Color */
+  --furiastic-accent-color: #00ffcc;
+  /* Dark Blue Accent Color */
+  --furiastic-secondary-accent-color: #0033cc;
+  /* Button Background Color */
+  --furiastic-button-background-color: #00ffcc;
+
+  /* --background-color: Create a sleek, futuristic background.
+--text-color: Light text color for high contrast.
+--neon-accent-color: Use for tech-related highlights.
+--dark-blue-accent-color: Accent color for depth and contrast.
+--button-background-color: High-tech button color. */
+}
+
+.monochrome {
+  background-color: var(--monochrome-background-color);
+  color: var(--monochrome-text-color);
+}
+.energetic {
+  background-color: var(--energetic-background-color);
+  color: var(--energetic-text-color);
+}
+.elegent {
+  background-color: var(--elegent-background-color);
+  color: var(--elegent-text-color);
+}
+.nature {
+  background-color: var(--nature-background-color);
+  color: var(--nature-text-color);
+}
+.furiastic {
+  background-color: var(--furiastic-background-color);
+  color: var(--furiastic-text-color);
+}
+
 html,
 body {
-  background-color: #212738;
-  color: #ffffff;
   scroll-behavior: smooth;
 }
 main {
   padding-inline: 5vw;
+}
+
+.theme {
+  transition: background-color 0.5s ease-in;
 }
 
 .skill_slide {

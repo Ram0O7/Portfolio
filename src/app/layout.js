@@ -1,8 +1,9 @@
 import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/footer/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 import { Poppins } from "next/font/google";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const raleway = Poppins({
   subsets: ["latin"],
@@ -46,11 +47,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={raleway.className}>
-        <main>
+        <ThemeProvider>
           <Navbar socials={socials} />
           {children}
           <Footer socials={socials} />
-        </main>
+        </ThemeProvider>
       </body>
     </html>
   );
