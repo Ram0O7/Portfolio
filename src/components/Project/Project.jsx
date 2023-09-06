@@ -25,7 +25,7 @@ const Project = () => {
   return (
     <div id="project_container" className="py-8 lg:py-16">
       <div className="flex justify-between items-center">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold sm:font-bold">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal sm:font-semibold">
           Projects
         </h1>
         <Button url="/#contact" text="contact me" />
@@ -55,11 +55,11 @@ const Project = () => {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h1 className="text-xl lg:text-2xl font-bold">{name}</h1>
+                <h1 className="text-xl lg:text-2xl font-semibold">{name}</h1>
                 <div className="tags flex gap-2">
                   {tags.map((tag) => (
                     <h2
-                      className="text-sm text-text-primary font-bold"
+                      className="text-sm text-text-primary font-normal"
                       key={Date.now() * Math.random()}
                     >
                       {tag}

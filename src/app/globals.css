@@ -47,16 +47,6 @@ main {
   }
 }
 
-nav ul {
-  width: min(60vw, 30rem);
-}
-nav ul {
-  z-index: 999;
-}
-nav ul li a {
-  color: white;
-}
-
 .profile-img {
   position: relative;
   display: flex;
@@ -88,7 +78,7 @@ nav ul li a {
   content: "";
   position: absolute;
   inset: 4px;
-  background: inherit;
+  background-color: #212738;
   border-radius: inherit;
 }
 

@@ -2,9 +2,12 @@ import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import "./globals.css";
-import { Raleway } from "next/font/google";
+import { Poppins } from "next/font/google";
 
-const raleway = Raleway({ subsets: ["latin"] });
+const raleway = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata = {
   title: "Ramkrishn Rai",

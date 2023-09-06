@@ -4,7 +4,7 @@ const Footer = ({ socials }) => {
   return (
     <footer className="flex flex-col gap-4 pb-8 lg:pb-16 border-t border-text-primary">
       <div className="socials pt-8 lg:pt-16 flex flex-col gap-4 sm:flex-row justify-between items-center">
-        <h1 className="logo text-3xl sm:text-4xl font-extrabold">
+        <h1 className="logo text-3xl sm:text-4xl font-semibold">
           ramkrishnrai
         </h1>
         <ul className="flex items-center sm:justify-between justify-center gap-10 text-2xl">

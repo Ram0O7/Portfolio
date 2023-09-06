@@ -16,7 +16,7 @@ const Hero = () => {
             .
           </h1>
         </div>
-        <div className="para text-base font-bold sm:max-w-sm">
+        <div className="para text-base font-semibold sm:max-w-sm">
           <p className="tracking-wider">
             Based in Kolkata, India, I'm a web developer passionate about
             building accessible web apps that users love.
@@ -33,7 +33,7 @@ const Hero = () => {
           quality={100}
           placeholder="blur"
           blurDataURL="/images/backgroundEffect.jpg"
-          className="object-cover p-1 rounded-lg"
+          className="object-cover p-1 rounded-lg z-10"
         />
       </div>
     </div>
