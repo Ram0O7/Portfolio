@@ -3,9 +3,28 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { baseURL } from "../../../config";
 
-//add endpoint url to the env file
-// const emailEndpoint = process.env.NEXT_PUBLIC_EMAILENDPOINT;
+function sendContactEmail(body) {
+  // Define the data you want to send in the request body
+  const requestData = {
+    name: body.name,
+    email: body.email,
+    message: body.message,
+  };
+
+  axios
+    .post(`${baseURL}/api/user`, requestData)
+    .then((response) => {
+      if (response.status === 200) console.log(response.message);
+      else throw new Error("failed to fetch request!");
+    })
+    .catch((error) => {
+      // Handle any errors that occur during the request
+      console.error("Error:", error);
+    });
+}
+
 const postFormData = async (name, email, message, toastId) => {
   const result = await axios
     .post(
@@ -25,6 +44,8 @@ const postFormData = async (name, email, message, toastId) => {
           type: toast.TYPE.SUCCESS,
           autoClose: 5000,
         });
+        //send email to my personal mailbox
+        sendContactEmail({ name, email, message });
       } else {
         throw new error("something went wrong!");
       }
