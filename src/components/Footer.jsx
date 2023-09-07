@@ -1,8 +1,9 @@
 import Link from "next/link";
+import CopyRight from "./CopyRight";
 
 const Footer = ({ socials }) => {
   return (
-    <footer className="flex flex-col gap-4 pb-8 lg:pb-16 border-t">
+    <footer className="flex flex-col gap-4 pb-8 lg:pb-16">
       <div className="socials pt-8 lg:pt-16 flex flex-col gap-4 sm:flex-row justify-between items-center">
         <h1 className="logo text-3xl sm:text-4xl font-semibold">
           ramkrishnrai
@@ -24,9 +25,7 @@ const Footer = ({ socials }) => {
           })}
         </ul>
       </div>
-      <span className="text-center sm:text-left text-blue">
-        &copy; {new Date().getFullYear()} ramkrishnrai
-      </span>
+      <CopyRight />
     </footer>
   );
 };

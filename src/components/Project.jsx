@@ -4,8 +4,10 @@ import Button from "@/components/ui/Button";
 import projects from "@/utils/projects";
 import referToComponent from "@/utils/refer";
 import Image from "next/image";
+import { useThemeContext } from "@/context/ThemeContext";
 
 const Project = () => {
+  const { theme } = useThemeContext();
   const [load, setLoad] = useState(4);
   const [loadingStatus, setLoadingStatus] = useState("more");
   const projectLoadRef = useRef(null);
@@ -40,7 +42,9 @@ const Project = () => {
                 key={Date.now() * Math.random()}
               >
                 <div className="project_img relative group w-full h-64 sm:h-80">
-                  <div className="hidden group-hover:lg:flex flex-col justify-center items-center gap-8 absolute top-0 left-0 w-full h-full bg-black/50 text-lg z-20">
+                  <div
+                    className={`hidden group-hover:lg:flex flex-col justify-center items-center gap-8 absolute top-0 left-0 w-full h-full bg-${theme}-bg opacity-90 text-lg z-20`}
+                  >
                     <Button text={"view project"} url={website} />
                     <Button text={"view code"} url={repo} />
                   </div>
@@ -81,7 +85,7 @@ const Project = () => {
         ref={projectLoadRef}
       >
         <button
-          className="btn relative uppercase tracking-widest pb-1"
+          className={`btn after:bg-${theme}-secondary-accent relative uppercase tracking-widest pb-1`}
           onClick={handleLoading}
         >{`show ${loadingStatus}...`}</button>
       </div>

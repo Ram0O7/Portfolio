@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { baseURL } from "../../config";
+import { useThemeContext } from "@/context/ThemeContext";
 
 function sendContactEmail(body) {
   // Define the data you want to send in the request body
@@ -67,6 +68,7 @@ const postFormData = async (name, email, message, toastId) => {
     });
 };
 const Contact = () => {
+  const { theme } = useThemeContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -89,7 +91,7 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="contact_form flex flex-col sm:grid grid-cols-2 w-full justify-between gap-8 font-bold text-center sm:text-left py-8 lg:py-16 border-t"
+      className={`contact_form flex flex-col sm:grid grid-cols-2 w-full justify-between gap-8 font-bold text-center sm:text-left py-8 lg:py-16 border-y border-${theme}-txt`}
     >
       <div className="flex flex-col gap-4 lg:gap-8">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl">Get in touch!</h1>
@@ -136,7 +138,7 @@ const Contact = () => {
         <div className="self-end">
           <button
             type="submit"
-            className="btn relative uppercase tracking-widest pb-1"
+            className={`btn after:bg-${theme}-secondary-accent relative uppercase tracking-widest pb-1`}
           >
             send message
           </button>

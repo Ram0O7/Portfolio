@@ -99,27 +99,6 @@
 --button-background-color: High-tech button color. */
 }
 
-.monochrome {
-  background-color: var(--monochrome-background-color);
-  color: var(--monochrome-text-color);
-}
-.energetic {
-  background-color: var(--energetic-background-color);
-  color: var(--energetic-text-color);
-}
-.elegent {
-  background-color: var(--elegent-background-color);
-  color: var(--elegent-text-color);
-}
-.nature {
-  background-color: var(--nature-background-color);
-  color: var(--nature-text-color);
-}
-.furiastic {
-  background-color: var(--furiastic-background-color);
-  color: var(--furiastic-text-color);
-}
-
 html,
 body {
   scroll-behavior: smooth;
@@ -134,7 +113,7 @@ main {
 
 .skill_slide {
   animation: slide 20s infinite linear;
-  animation-fill-mode: forwards;
+  /* animation-fill-mode: forwards; */
 }
 .skill_slide:hover {
   animation-play-state: paused;
@@ -149,9 +128,9 @@ main {
   }
 }
 .logo-animation {
-  background: linear-gradient(to left, #3fa7ca, #f97068);
   animation: gradient_wave 5s linear infinite alternate;
 }
+
 @keyframes gradient_wave {
   0% {
     background-size: 10%;
@@ -174,11 +153,8 @@ main {
   align-items: center;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #2127385f;
   background-size: 100%;
-  background-clip: content-box;
-  filter: grayscale(0.4);
-  opacity: 0.5;
+  opacity: 0.8;
   overflow: hidden;
   border-radius: 0.25rem;
 }
@@ -186,19 +162,16 @@ main {
 .profile-img::before {
   content: "";
   position: absolute;
-  background: linear-gradient(to top, #3fa7ca, #f97068);
   width: 100px;
   height: 140%;
   transform: rotate(-145deg);
   border-radius: inherit;
-  animation: rotate 5s infinite linear;
 }
 
 .profile-img::after {
   content: "";
   position: absolute;
   inset: 4px;
-  background-color: #212738;
   border-radius: inherit;
 }
 
@@ -211,7 +184,6 @@ main {
   margin-inline: auto;
   width: 70%;
   height: 2px;
-  background-color: #f97068;
   transition: width 0.2s ease-in;
 }
 .btn:hover::after {

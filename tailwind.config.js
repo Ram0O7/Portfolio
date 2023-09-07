@@ -5,6 +5,100 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    //text colors
+    "text-monochrome-txt",
+    "text-elegent-txt",
+    "text-furiastic-txt",
+    "text-nature-txt",
+    "text-energetic-txt",
+    //border colors
+    "border-monochrome-txt",
+    "border-elegent-txt",
+    "border-furiastic-txt",
+    "border-nature-txt",
+    "border-energetic-txt",
+    //hover text accent color
+    "hover:text-monochrome-accent",
+    "hover:text-elegent-accent",
+    "hover:text-furiastic-accent",
+    "hover:text-nature-accent",
+    "hover:text-energetic-accent",
+    //text bg colors
+    "text-monochrome-bg",
+    "text-elegent-bg",
+    "text-furiastic-bg",
+    "text-nature-bg",
+    "text-energetic-bg",
+    //bg colors
+    "bg-monochrome-bg",
+    "bg-elegent-bg",
+    "bg-furiastic-bg",
+    "bg-nature-bg",
+    "bg-energetic-bg",
+    //bg-accent-colors
+    "bg-monochrome-accent",
+    "bg-elegent-accent",
+    "bg-furiastic-accent",
+    "bg-nature-accent",
+    "bg-energetic-accent",
+    //text-accent-colors
+    "text-monochrome-accent",
+    "text-elegent-accent",
+    "text-furiastic-accent",
+    "text-nature-accent",
+    "text-energetic-accent",
+    //text secondary accent colors
+    "text-monochrome-secondary-accent",
+    "text-elegent-secondary-accent",
+    "text-furiastic-secondary-accent",
+    "text-nature-secondary-accent",
+    "text-energetic-secondary-accent",
+    //bg secondary accent colors
+    "bg-monochrome-secondary-accent",
+    "bg-elegent-secondary-accent",
+    "bg-furiastic-secondary-accent",
+    "bg-nature-secondary-accent",
+    "bg-energetic-secondary-accent",
+    //bg after background colors
+    "after:bg-monochrome-bg",
+    "after:bg-elegent-bg",
+    "after:bg-furiastic-bg",
+    "after:bg-nature-bg",
+    "after:bg-energetic-bg",
+    //bg after secondary accent colors
+    "after:bg-monochrome-secondary-accent",
+    "after:bg-elegent-secondary-accent",
+    "after:bg-furiastic-secondary-accent",
+    "after:bg-nature-secondary-accent",
+    "after:bg-energetic-secondary-accent",
+    //btn background colors
+    "bg-monochrome-btn",
+    "bg-elegent-btn",
+    "bg-furiastic-btn",
+    "bg-energetic-btn",
+    "bg-nature-btn",
+    //offset decoration colors
+    "decoration-monochrome-accent",
+    "decoration-elegent-accent",
+    "decoration-furiastic-accent",
+    "decoration-nature-accent",
+    "decoration-energetic-accent",
+    //gradient colors
+    "from-monochrome-accent to-monochrome-secondary-accent",
+    "from-elegent-accent to-elegent-secondary-accent",
+    "from-furiastic-accent to-furiastic-secondary-accent",
+    "from-nature-accent to-nature-secondary-accent",
+    "from-energetic-accent to-energetic-secondary-accent",
+    //gradient colors for before
+    "before:from-monochrome-accent before:to-monochrome-secondary-accent",
+    "before:from-elegent-accent before:to-elegent-secondary-accent",
+    "before:from-furiastic-accent before:to-furiastic-secondary-accent",
+    "before:from-nature-accent before:to-nature-secondary-accent",
+    "before:from-energetic-accent before:to-energetic-secondary-accent",
+    //classes for blog page
+    "prose-invert",
+  ],
   theme: {
     extend: {
       colors: {
@@ -30,9 +124,48 @@ module.exports = {
         /* Primary Accent Color */
         "energetic-accent": "#ff5733",
         /* Secondary Accent Color */
-        "energetic-secondary-accent-color": "#44bb44",
+        "energetic-secondary-accent": "#44bb44",
         /* Button Background Color */
         "energetic-btn": "#ff5733",
+
+        /****** Colors for Nature-Inspired Theme ******/
+
+        /* Background Color */
+        "nature-bg": "#e4f9f5",
+        /* Text Color */
+        "nature-txt": "#333",
+        /* Green Accent Color */
+        "nature-accent": "#44bb44",
+        /* Brown Accent Color */
+        "nature-secondary-accent": "#8b4513",
+        /* Button Background Color */
+        "nature-btn": "#44bb44",
+
+        /****** Colors for Futuristic tech Theme ******/
+
+        /* Background Color */
+        "furiastic-bg": "#0f0f0f",
+        /* Text Color */
+        "furiastic-txt": "#ccc",
+        /* Neon Accent Color */
+        "furiastic-accent": "#00ffcc",
+        /* Dark Blue Accent Color */
+        "furiastic-secondary-accent": "#0033cc",
+        /* Button Background Color */
+        "furiastic-btn": "#00ffcc",
+
+        /****** Colors for Elegant Dark Mode Theme ******/
+
+        /* Background Color */
+        "elegent-bg": "#111",
+        /* Text Color */
+        "elegent-txt": "#ddd",
+        /* Accent Color for Links and Highlights */
+        "elegent-accent": "#ffcc00",
+        /* Secondary Accent Color */
+        "elegent-secondary-accent": "#777",
+        /* Button Background Color */
+        "elegent-btn": "#ffcc00",
       },
     },
   },

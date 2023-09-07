@@ -42,9 +42,7 @@ export default function Page({ params }) {
 
   return (
     <CodeHighlight>
-      <article className="prose prose-sm sm:prose-base prose-headings:font-semibold lg:prose-lg prose-img:object-cover prose-img:w-full prose-img:h-72 sm:prose-img:w-3/4 sm:prose-img:h-96 !prose-invert prose-slate prose-orange prose-img:rounded-sm max-w-none">
-        <MDXRemote source={props.content} />
-      </article>
+      <MDXRemote source={props.content} />
     </CodeHighlight>
   );
 }
