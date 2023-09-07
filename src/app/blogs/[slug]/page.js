@@ -2,7 +2,10 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import CodeHighlight from "@/components/ui/CodeHighlight";
+import dynamic from "next/dynamic";
+const CodeHighlight = dynamic(() => import("@/components/ui/CodeHighlight"), {
+  ssr: false,
+});
 
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
