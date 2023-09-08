@@ -1,10 +1,22 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("nature");
   const [proseInvert, setProseInvert] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.body.classList.remove(
+      "monochrome",
+      "elegent",
+      "energetic",
+      "furiastic",
+      "nature"
+    );
+    document.body.classList.add(theme);
+  }, [theme]);
 
   const updateTheme = (theme) => {
     setTheme(theme);

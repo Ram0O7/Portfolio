@@ -16,12 +16,6 @@
   /* Button Background Color */
   --monochrome-button-background-color: #007bff;
 
-  /* --background-color: The background color for the entire website.
---text-color: The default text color for content.
---accent-color: Used for hyperlinks and important highlights.
---secondary-accent-color: A more muted accent color for secondary elements.
---button-background-color: Color for buttons to grab attention. */
-
   /****** Colors for Vibrant and Energetic Theme ******/
 
   /* Background Color */
@@ -35,12 +29,6 @@
   /* Button Background Color */
   --energetic-button-background-color: #ff5733;
 
-  /* --background-color: Create an inviting background.
---text-color: A classic text color for readability.
---primary-accent-color: Use for headings and key elements.
---secondary-accent-color: Another accent color for variety.
---button-background-color: Eye-catching color for call-to-action buttons. */
-
   /****** Colors for Elegant Dark Mode Theme ******/
 
   /* Background Color */
@@ -53,13 +41,6 @@
   --elegent-secondary-accent-color: #777;
   /* Button Background Color */
   --elegent-button-background-color: #ffcc00;
-
-  /* --background-color: Create a visually striking dark background.
---text-color: Light text color for contrast.
---accent-color: Bright color for links and emphasis.
---secondary-accent-color: A more muted accent color for secondary elements.
---button-background-color: Color that pops for buttons. */
-
   /****** Colors for Nature-Inspired Theme ******/
 
   /* Background Color */
@@ -73,12 +54,6 @@
   /* Button Background Color */
   --nature-button-background-color: #44bb44;
 
-  /* --background-color: Soft, nature-inspired background.
---text-color: A classic text color for readability.
---green-accent-color: Use for headings and nature-related elements.
---brown-accent-color: Accent color for a grounded feel.
---button-background-color: Nature-themed button color. */
-
   /****** Colors for Futuristic tech Theme ******/
 
   /* Background Color */
@@ -91,12 +66,6 @@
   --furiastic-secondary-accent-color: #0033cc;
   /* Button Background Color */
   --furiastic-button-background-color: #00ffcc;
-
-  /* --background-color: Create a sleek, futuristic background.
---text-color: Light text color for high contrast.
---neon-accent-color: Use for tech-related highlights.
---dark-blue-accent-color: Accent color for depth and contrast.
---button-background-color: High-tech button color. */
 }
 
 html,
@@ -107,8 +76,44 @@ main {
   padding-inline: 5vw;
 }
 
+.monochrome::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--monochrome-accent-color);
+}
+.monochrome::-webkit-scrollbar-thumb {
+  background-color: var(--monochrome-text-color);
+}
+.energetic::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--energetic-accent-color);
+}
+.energetic::-webkit-scrollbar-thumb {
+  background-color: var(--energetic-text-color);
+}
+.elegent::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--elegent-accent-color);
+}
+.elegent::-webkit-scrollbar-thumb {
+  background-color: var(--elegent-secondary-accent-color);
+}
+.furiastic::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--furiastic-accent-color);
+}
+.furiastic::-webkit-scrollbar-thumb {
+  background-color: var(--furiastic-secondary-accent-color);
+}
+.nature::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--nature-accent-color);
+}
+.nature::-webkit-scrollbar-thumb {
+  background-color: var(--nature-text-color);
+}
+
 .theme {
-  transition: background-color 0.5s ease-in;
+  transition: background-color 0.4s ease;
 }
 
 .skill_slide {

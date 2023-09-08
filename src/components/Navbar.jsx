@@ -3,6 +3,7 @@ import Link from "next/link";
 import SelectTheme from "./ui/SelectTheme";
 import { useThemeContext } from "@/context/ThemeContext";
 const navLinks = [
+  { name: "home", url: "/" },
   { name: "blog", url: "/blogs" },
   { name: "contact", url: "/#contact" },
 ];

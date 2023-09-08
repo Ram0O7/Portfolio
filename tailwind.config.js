@@ -42,6 +42,12 @@ module.exports = {
     "bg-furiastic-accent",
     "bg-nature-accent",
     "bg-energetic-accent",
+    //bg-accent-colors on hover
+    "hover:bg-monochrome-accent",
+    "hover:bg-elegent-accent",
+    "hover:bg-furiastic-accent",
+    "hover:bg-nature-accent",
+    "hover:bg-energetic-accent",
     //text-accent-colors
     "text-monochrome-accent",
     "text-elegent-accent",
@@ -60,6 +66,12 @@ module.exports = {
     "bg-furiastic-secondary-accent",
     "bg-nature-secondary-accent",
     "bg-energetic-secondary-accent",
+    //bg secondary accent colors on hover
+    "hover:bg-monochrome-secondary-accent",
+    "hover:bg-elegent-secondary-accent",
+    "hover:bg-furiastic-secondary-accent",
+    "hover:bg-nature-secondary-accent",
+    "hover:bg-energetic-secondary-accent",
     //bg after background colors
     "after:bg-monochrome-bg",
     "after:bg-elegent-bg",

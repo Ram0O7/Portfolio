@@ -2,12 +2,12 @@ import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
-import { Poppins } from "next/font/google";
+import { Roboto_Condensed } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
 
-const raleway = Poppins({
+const roboto_condensed = Roboto_Condensed({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "700"],
 });
 
 export const metadata = {
@@ -46,7 +46,7 @@ const socials = [
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={raleway.className}>
+      <body className={roboto_condensed.className}>
         <ThemeProvider>
           <Navbar socials={socials} />
           {children}

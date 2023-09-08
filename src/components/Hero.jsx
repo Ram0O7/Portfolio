@@ -31,7 +31,7 @@ const Hero = () => {
         <Button url="/#contact" text="contact me" />
       </div>
       <div
-        className={`profile-img bg-${theme}-bg after:bg-${theme}-bg before:bg-gradient-to-t before:from-${theme}-accent before:to-${theme}-secondary-accent relative h-96 w-4/5 sm:w-56 md:w-64 lg:w-72 drop-shadow-md`}
+        className={`profile-img bg-${theme}-bg before:bg-gradient-to-t before:from-${theme}-accent before:to-${theme}-secondary-accent relative h-96 w-4/5 sm:w-56 md:w-64 lg:w-72 drop-shadow-md -z-1`}
       >
         <Image
           src="https://res.cloudinary.com/dn6bzdlno/image/upload/v1692613956/profile_qf2bmd.jpg"
@@ -41,7 +41,7 @@ const Hero = () => {
           quality={100}
           placeholder="blur"
           blurDataURL="/images/backgroundEffect.jpg"
-          className="profile-photo object-cover p-1 rounded-lg z-10"
+          className="profile-photo object-cover p-1 rounded-lg"
         />
       </div>
     </div>
