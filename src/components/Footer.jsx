@@ -1,9 +1,13 @@
+"use client";
 import Link from "next/link";
-import CopyRight from "./CopyRight";
+import { useThemeContext } from "@/context/ThemeContext";
 
 const Footer = ({ socials }) => {
+  const { theme } = useThemeContext();
   return (
-    <footer className="flex flex-col gap-4 pb-8 lg:pb-16">
+    <footer
+      className={`flex flex-col gap-4 pb-8 lg:pb-16 bg-${theme}-accent text-${theme}-bg`}
+    >
       <div className="socials pt-8 lg:pt-16 flex flex-col gap-4 sm:flex-row justify-between items-center">
         <h1 className="logo text-3xl sm:text-4xl font-semibold">
           ramkrishnrai
@@ -25,7 +29,9 @@ const Footer = ({ socials }) => {
           })}
         </ul>
       </div>
-      <CopyRight />
+      <span className={`text-center sm:text-left text-${theme}-bg`}>
+        &copy; {new Date().getFullYear()} ramkrishnrai
+      </span>
     </footer>
   );
 };

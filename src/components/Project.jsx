@@ -60,7 +60,7 @@ const Project = () => {
                   />
                 </div>
                 <h1 className="text-xl lg:text-2xl font-semibold">{name}</h1>
-                <div className="tags flex gap-2">
+                <div className={`tags flex gap-2 text-${theme}-txt/70`}>
                   {tags.map((tag) => (
                     <h2
                       className="text-sm text-text-primary font-normal"

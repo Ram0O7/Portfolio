@@ -73,43 +73,36 @@ body {
   scroll-behavior: smooth;
 }
 main {
+  margin-top: 4rem;
+  min-height: 100vh;
+}
+header,
+footer,
+main {
   padding-inline: 5vw;
 }
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
 
-.monochrome::-webkit-scrollbar {
+/********** styling scrollbars based on themes **************/
+.light::-webkit-scrollbar {
   width: 8px;
-  background-color: var(--monochrome-accent-color);
+  background-color: #eee;
 }
-.monochrome::-webkit-scrollbar-thumb {
-  background-color: var(--monochrome-text-color);
+.light::-webkit-scrollbar-thumb {
+  background-color: #333;
 }
-.energetic::-webkit-scrollbar {
+.dark::-webkit-scrollbar {
   width: 8px;
-  background-color: var(--energetic-accent-color);
+  background-color: #111;
 }
-.energetic::-webkit-scrollbar-thumb {
-  background-color: var(--energetic-text-color);
-}
-.elegent::-webkit-scrollbar {
-  width: 8px;
-  background-color: var(--elegent-accent-color);
-}
-.elegent::-webkit-scrollbar-thumb {
-  background-color: var(--elegent-secondary-accent-color);
-}
-.furiastic::-webkit-scrollbar {
-  width: 8px;
-  background-color: var(--furiastic-accent-color);
-}
-.furiastic::-webkit-scrollbar-thumb {
-  background-color: var(--furiastic-secondary-accent-color);
-}
-.nature::-webkit-scrollbar {
-  width: 8px;
-  background-color: var(--nature-accent-color);
-}
-.nature::-webkit-scrollbar-thumb {
-  background-color: var(--nature-text-color);
+.dark::-webkit-scrollbar-thumb {
+  background-color: #eee;
 }
 
 .theme {
@@ -222,9 +215,10 @@ form > div textarea::placeholder {
       transform: translateX(-2915px);
     }
   }
-
+  header,
+  footer,
   main {
-    padding-inline: 5vw;
+    padding-inline: 10vw;
   }
 }
 

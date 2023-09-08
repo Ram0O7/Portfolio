@@ -45,14 +45,12 @@ const socials = [
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={roboto_condensed.className}>
-        <ThemeProvider>
-          <Navbar socials={socials} />
-          {children}
-          <Footer socials={socials} />
-        </ThemeProvider>
-      </body>
+    <html lang="en" className={roboto_condensed.className}>
+      <ThemeProvider>
+        <Navbar socials={socials} />
+        <main>{children}</main>
+        <Footer socials={socials} />
+      </ThemeProvider>
     </html>
   );
 }

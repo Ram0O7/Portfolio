@@ -11,15 +11,17 @@ const navLinks = [
 const Navbar = () => {
   const { theme } = useThemeContext();
   return (
-    <nav className="flex items-center justify-between py-4">
+    <header
+      className={`flex items-center justify-between py-2 bg-${theme}-bg/60 backdrop-blur-md shadow-sm`}
+    >
       <Link href={"/"}>
-        <h1
-          className={`logo logo-animation bg-gradient-to-l from-${theme}-accent to-furiastic-${theme}-accent text-2xl text-${theme}-txt sm:text-3xl lg:text-4xl font-extrabold`}
+        <span
+          className={`logo logo-animation bg-gradient-to-l from-${theme}-accent to-${theme}-secondary-accent text-2xl text-${theme}-txt sm:text-3xl lg:text-4xl font-extrabold`}
         >
           RK
-        </h1>
+        </span>
       </Link>
-      <div className="flex gap-8 sm:gap-10 items-center">
+      <nav className="hidden sm:flex gap-8 sm:gap-10 items-center">
         <ul className="flex items-center justify-center gap-6 sm:gap-8">
           {navLinks.map((link) => {
             const { name, url } = link;
@@ -36,8 +38,8 @@ const Navbar = () => {
           })}
         </ul>
         <SelectTheme />
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 

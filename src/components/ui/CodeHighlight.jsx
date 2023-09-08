@@ -15,7 +15,7 @@ export default function CodeHighlight({ children }) {
 
   return (
     <article
-      className={`py-12 lg:py-28 prose prose-sm sm:prose-base prose-headings:font-semibold lg:prose-lg prose-img:object-cover prose-img:w-full prose-img:h-72 sm:prose-img:w-3/4 sm:prose-img:h-96 prose-slate prose-orange ${proseInvert} prose-img:rounded-sm mx-auto`}
+      className={`py-12 lg:py-28 prose prose-sm sm:prose-base prose-headings:font-semibold lg:prose-lg prose-img:object-cover prose-img:w-full prose-img:h-72 sm:prose-img:w-3/4 sm:prose-img:h-96 prose-slate prose-orange ${proseInvert} prose-img:rounded-sm max-w-none mx-auto`}
     >
       {children}
     </article>

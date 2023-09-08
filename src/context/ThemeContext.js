@@ -4,33 +4,31 @@ export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("nature");
+  const [mode, setMode] = useState("light");
   const [proseInvert, setProseInvert] = useState("");
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
-    document.body.classList.remove(
-      "monochrome",
-      "elegent",
-      "energetic",
-      "furiastic",
-      "nature"
-    );
-    document.body.classList.add(theme);
+    // for scrollbar styling purposes
+    document.body.classList.remove("dark", "light");
+    document.body.classList.add(mode);
   }, [theme]);
 
   const updateTheme = (theme) => {
     setTheme(theme);
-    theme === "furiastic" || theme === "elegent"
-      ? setProseInvert("prose-invert")
-      : setProseInvert("");
+    if (theme === "furiastic" || theme === "elegent") {
+      setProseInvert("prose-invert");
+      setMode("dark");
+    } else {
+      setProseInvert("");
+      setMode("light");
+    }
   };
   return (
     <ThemeContext.Provider value={{ updateTheme, theme, proseInvert }}>
-      <main
-        className={`theme bg-${theme}-bg text-${theme}-txt border-monochrome-txt`}
-      >
+      <body className={`theme bg-${theme}-bg text-${theme}-txt`}>
         {children}
-      </main>
+      </body>
     </ThemeContext.Provider>
   );
 };

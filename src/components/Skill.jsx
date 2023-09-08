@@ -13,7 +13,9 @@ const Skill = () => {
             >
               <div className="w-20 h-20 object-contain">{icon}</div>
               <h1 className="text-3xl sm:text-4xl font-semibold">{language}</h1>
-              <p className="text-xs sm:text-sm font-semibold">{experience}</p>
+              <p className="text-xs sm:text-sm font-semibold opacity-70">
+                {experience}
+              </p>
             </div>
           );
         })}

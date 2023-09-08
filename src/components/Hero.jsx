@@ -23,7 +23,7 @@ const Hero = () => {
           </h1>
         </div>
         <div className="para text-base font-semibold sm:max-w-sm">
-          <p className="tracking-wider">
+          <p className={`tracking-wider text-${theme}-txt/70`}>
             Based in Kolkata, India, I'm a web developer passionate about
             building accessible web apps that users love.
           </p>

@@ -12,6 +12,12 @@ module.exports = {
     "text-furiastic-txt",
     "text-nature-txt",
     "text-energetic-txt",
+    //text colors with opacity 60
+    "text-monochrome-txt/70",
+    "text-elegent-txt/70",
+    "text-furiastic-txt/70",
+    "text-nature-txt/70",
+    "text-energetic-txt/70",
     //border colors
     "border-monochrome-txt",
     "border-elegent-txt",
@@ -36,6 +42,12 @@ module.exports = {
     "bg-furiastic-bg",
     "bg-nature-bg",
     "bg-energetic-bg",
+    //bg colors with opacity 80
+    "bg-monochrome-bg/60",
+    "bg-elegent-bg/60",
+    "bg-furiastic-bg/60",
+    "bg-nature-bg/60",
+    "bg-energetic-bg/60",
     //bg-accent-colors
     "bg-monochrome-accent",
     "bg-elegent-accent",
