@@ -164,6 +164,21 @@ header {
   height: 140%;
   transform: rotate(-145deg);
   border-radius: inherit;
+  animation: rotate 6s infinite linear;
+}
+
+nav {
+  width: 60vw;
+  height: 100vh;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .profile-img::after {

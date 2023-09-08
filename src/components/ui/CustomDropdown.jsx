@@ -1,14 +1,7 @@
 "use client";
 import { useThemeContext } from "@/context/ThemeContext";
 import React, { useState } from "react";
-import {
-  FaChevronCircleDown,
-  FaChevronCircleUp,
-  FaAngleDoubleDown,
-  FaAngleDoubleUp,
-  FaAngleUp,
-  FaAngleDown,
-} from "react-icons/fa";
+import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
 
 const CustomDropdown = ({ options }) => {
   const { updateTheme, theme } = useThemeContext();
@@ -47,7 +40,7 @@ const CustomDropdown = ({ options }) => {
               <li
                 key={option}
                 onClick={() => handleOptionClick(option)}
-                className={`cursor-pointer py-2 border-b bg-${theme}-accent text-${theme}-bg hover:text-${theme}-txt hover:bg-${theme}-secondary-accent border-${theme}-bg`}
+                className={`cursor-pointer py-1 border-b bg-${theme}-accent text-${theme}-bg hover:text-${theme}-txt hover:bg-${theme}-secondary-accent border-${theme}-bg`}
               >
                 {option}
               </li>
