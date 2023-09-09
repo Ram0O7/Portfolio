@@ -6,6 +6,14 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("nature");
   const [mode, setMode] = useState("light");
   const [proseInvert, setProseInvert] = useState("");
+  // toggle states for mobile devices
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const toggleNav = () => {
+    setIsNavOpen((prev) => !prev);
+    !isNavOpen
+      ? document.body.classList.add("no_overflow")
+      : document.body.classList.remove("no_overflow");
+  };
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -25,7 +33,9 @@ export const ThemeProvider = ({ children }) => {
     }
   };
   return (
-    <ThemeContext.Provider value={{ updateTheme, theme, proseInvert }}>
+    <ThemeContext.Provider
+      value={{ updateTheme, theme, proseInvert, isNavOpen, toggleNav }}
+    >
       <body className={`theme bg-${theme}-bg text-${theme}-txt`}>
         {children}
       </body>

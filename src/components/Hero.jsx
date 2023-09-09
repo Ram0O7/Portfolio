@@ -41,7 +41,7 @@ const Hero = () => {
           quality={100}
           placeholder="blur"
           blurDataURL="/images/backgroundEffect.jpg"
-          className="profile-photo object-cover p-1 rounded-lg"
+          className="profile-photo object-cover p-1 rounded-lg z-10"
         />
       </div>
     </div>

@@ -185,6 +185,7 @@ nav {
   content: "";
   position: absolute;
   inset: 4px;
+  background-color: #333;
   border-radius: inherit;
 }
 
@@ -222,9 +223,14 @@ form > div textarea::placeholder {
 }
 /* removing cursor events from touch enabled devices */
 @media (hover: none) {
-  a,
-  button {
+  * {
     cursor: none;
+  }
+}
+/* adding scroll hidden class for mobile devices */
+@media (max-width: 480px) {
+  .no_overflow {
+    overflow: hidden;
   }
 }
 @media only screen and (min-width: 768px) {

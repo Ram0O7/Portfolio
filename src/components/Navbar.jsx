@@ -11,14 +11,7 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const { theme } = useThemeContext();
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleNav = () => {
-    setIsOpen((prev) => !prev);
-    !isOpen
-      ? (document.body.style.overflow = "hidden")
-      : (document.body.style.overflow = "scroll");
-  };
+  const { theme, isNavOpen, toggleNav } = useThemeContext();
   return (
     <header
       className={`flex items-center justify-between py-1 sm:py-2 bg-${theme}-bg/60 backdrop-blur-md shadow-sm`}
@@ -31,11 +24,16 @@ const Navbar = () => {
         </span>
       </Link>
       <div className="sm:hidden z-50">
-        <Hamburger size={25} toggled={isOpen} onToggle={toggleNav} />
+        <Hamburger
+          size={25}
+          toggled={isNavOpen}
+          onToggle={toggleNav}
+          label="NavButton"
+        />
       </div>
       <nav
         className={`${
-          isOpen ? "block" : "hidden"
+          isNavOpen ? "block" : "hidden"
         } fixed top-0 right-0 sm:flex pt-20 sm:pt-0 bg-${theme}-bg sm:bg-transparent sm:relative sm:h-auto sm:w-auto items-center`}
       >
         <div

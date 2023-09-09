@@ -5,7 +5,7 @@ import autoAnimate from "@formkit/auto-animate";
 import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
 
 const CustomDropdown = ({ options }) => {
-  const { updateTheme, theme } = useThemeContext();
+  const { updateTheme, theme, toggleNav } = useThemeContext();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("theme");
   const dropdownRef = useRef(null);
@@ -24,6 +24,7 @@ const CustomDropdown = ({ options }) => {
     setSelectedOption(option);
     setIsOpen(false);
     updateTheme(option);
+    toggleNav();
   };
 
   return (
