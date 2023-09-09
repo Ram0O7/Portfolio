@@ -1,12 +1,20 @@
 "use client";
 import { useThemeContext } from "@/context/ThemeContext";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import autoAnimate from "@formkit/auto-animate";
 import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
 
 const CustomDropdown = ({ options }) => {
   const { updateTheme, theme } = useThemeContext();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("theme");
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    if (dropdownRef.current) {
+      autoAnimate(dropdownRef.current);
+    }
+  }, [isOpen]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -33,7 +41,10 @@ const CustomDropdown = ({ options }) => {
           <FaAngleDoubleDown className="text-sm md:text-lg animate-pulse" />
         )}
       </div>
-      <div className="custom-dropdown absolute right-0 top-8 md:top-10 text-white z-50 w-full">
+      <div
+        ref={dropdownRef}
+        className="custom-dropdown absolute right-0 top-8 md:top-10 text-white z-50 w-full"
+      >
         {isOpen && (
           <ul className="dropdown-options">
             {options.map((option) => (

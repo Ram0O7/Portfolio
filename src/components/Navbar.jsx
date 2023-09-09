@@ -21,7 +21,7 @@ const Navbar = () => {
   };
   return (
     <header
-      className={`flex items-center justify-between py-2 bg-${theme}-bg/60 backdrop-blur-md shadow-sm`}
+      className={`flex items-center justify-between py-1 sm:py-2 bg-${theme}-bg/60 backdrop-blur-md shadow-sm`}
     >
       <Link href={"/"}>
         <span
@@ -46,7 +46,7 @@ const Navbar = () => {
           {navLinks.map((link) => {
             const { name, url } = link;
             return (
-              <li key={name}>
+              <li key={name} onClick={toggleNav}>
                 <Link
                   href={url}
                   className={`text-sm sm:text-lg hover:text-${theme}-accent font-semibold hover:underline underline-offset-2`}
