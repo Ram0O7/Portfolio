@@ -2,7 +2,7 @@ import skills from "../utils/skills";
 
 const Skill = () => {
   return (
-    <div className="skill_container w-full overflow-hidden mt-8 py-12">
+    <div className="skill_container w-full overflow-auto lg:overflow-hidden mt-8 py-12">
       <div className="skill_slide grid grid-flow-col">
         {skills.map((skill) => {
           const { language, experience, icon } = skill;

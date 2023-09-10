@@ -4,6 +4,7 @@ import Button from "@/components/ui/Button";
 import projects from "@/utils/projects";
 import referToComponent from "@/utils/refer";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { useThemeContext } from "@/context/ThemeContext";
 
 const Project = () => {
@@ -37,17 +38,14 @@ const Project = () => {
           const { name, img, tags, repo, website } = project;
           return (
             index < load && (
-              <div
-                className="project flex flex-col gap-2"
-                key={Date.now() * Math.random()}
-              >
-                <div className="project_img relative group w-full h-64 sm:h-80">
-                  <div
-                    className={`hidden group-hover:lg:flex flex-col justify-center items-center gap-8 absolute top-0 left-0 w-full h-full bg-${theme}-bg opacity-90 text-lg z-20`}
-                  >
-                    <Button text={"view project"} url={website} />
-                    <Button text={"view code"} url={repo} />
-                  </div>
+              <div className="project flex flex-col gap-2" key={img}>
+                <motion.div
+                  initial={{ opacity: 0.4, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="project_img relative w-full h-64 sm:h-80"
+                >
                   <Image
                     className="object-cover"
                     src={img}
@@ -58,21 +56,25 @@ const Project = () => {
                     fill={true}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                </div>
+                </motion.div>
                 <h1 className="text-xl lg:text-2xl font-semibold">{name}</h1>
                 <div className={`tags flex gap-2 text-${theme}-txt/70`}>
                   {tags.map((tag) => (
                     <h2
                       className="text-sm text-text-primary font-normal"
-                      key={Date.now() * Math.random()}
+                      key={tag}
                     >
                       {tag}
                     </h2>
                   ))}
                 </div>
-                <div className="lg:hidden flex gap-4 mt-2">
-                  <Button text={"view project"} url={website} />
-                  <Button text={"view code"} url={repo} />
+                <div className="flex gap-4 mt-2">
+                  <Button
+                    text={"view project"}
+                    url={website}
+                    target={"_blank"}
+                  />
+                  <Button text={"view code"} url={repo} target={"_blank"} />
                 </div>
               </div>
             )

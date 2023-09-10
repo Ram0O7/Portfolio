@@ -111,7 +111,6 @@ header {
 
 .skill_slide {
   animation: slide 20s infinite linear;
-  /* animation-fill-mode: forwards; */
 }
 .skill_slide:hover {
   animation-play-state: paused;
@@ -166,11 +165,6 @@ header {
   border-radius: inherit;
   animation: rotate 6s infinite linear;
 }
-/*  for mobile screens */
-nav {
-  width: 60vw;
-  height: 100vh;
-}
 
 @keyframes rotate {
   from {
@@ -215,7 +209,6 @@ form > div textarea {
 form > div input::placeholder,
 form > div textarea::placeholder {
   text-transform: uppercase;
-  color: #c4c4c4;
 }
 
 .skill:hover svg {
@@ -227,12 +220,7 @@ form > div textarea::placeholder {
     cursor: none;
   }
 }
-/* adding scroll hidden class for mobile devices */
-@media (max-width: 480px) {
-  .no_overflow {
-    overflow: hidden;
-  }
-}
+
 @media only screen and (min-width: 768px) {
   @keyframes slide {
     0% {

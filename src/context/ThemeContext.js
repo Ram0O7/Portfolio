@@ -1,22 +1,20 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
+import useTheme from "@/utils/themeManager";
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("nature");
+  const [theme, setTheme] = useTheme();
   const [mode, setMode] = useState("light");
+  // for blag post styling purposes
   const [proseInvert, setProseInvert] = useState("");
   // toggle states for mobile devices
   const [isNavOpen, setIsNavOpen] = useState(false);
   const toggleNav = () => {
     setIsNavOpen((prev) => !prev);
-    !isNavOpen
-      ? document.body.classList.add("no_overflow")
-      : document.body.classList.remove("no_overflow");
   };
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
     // for scrollbar styling purposes
     document.body.classList.remove("dark", "light");
     document.body.classList.add(mode);
