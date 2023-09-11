@@ -11,7 +11,7 @@ function useLocalStorage(key, fallbackTheme) {
     if (typeof window !== "undefined") {
       // Get the theme from local storage using the key
       const storedtheme = localStorage.getItem(key);
-      // If the theme exists, parse it and set it to the state
+      // If the theme exists, set it to the state
       // Otherwise, use the fallback theme
       setTheme(storedtheme ? storedtheme : fallbackTheme);
     }

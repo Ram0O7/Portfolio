@@ -211,13 +211,9 @@ form > div textarea::placeholder {
   text-transform: uppercase;
 }
 
-.skill:hover svg {
-  filter: drop-shadow(2px 5px 25px rgb(255 255 255 / 0.2));
-}
-/* removing cursor events from touch enabled devices */
 @media (hover: none) {
   * {
-    cursor: none;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 

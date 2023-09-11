@@ -3,11 +3,17 @@ import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
+import BlogHeader from "@/components/ui/BlogHeader";
 const CodeHighlight = dynamic(() => import("@/components/ui/CodeHighlight"), {
   ssr: false,
+  loading: () => (
+    <h1 className="text-3xl text-center mt-40 font-bold animate-pulse">
+      Loading...
+    </h1>
+  ),
 });
 
-export async function generateMetadata({ params, searchParams }, parent) {
+export async function generateMetadata({ params }) {
   // read route params
   const slug = params.slug;
 
@@ -45,6 +51,10 @@ export default function Page({ params }) {
 
   return (
     <CodeHighlight>
+      <BlogHeader
+        title={props.frontMatter.title}
+        tags={props.frontMatter.tags}
+      />
       <MDXRemote source={props.content} />
     </CodeHighlight>
   );
