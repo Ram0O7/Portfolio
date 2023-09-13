@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { baseURL } from "../../config";
 import { useThemeContext } from "@/context/ThemeContext";
 
-function sendContactEmail(body) {
+function sendContactEmail(body, toastId) {
   // Define the data you want to send in the request body
   const requestData = {
     name: body.name,
@@ -17,41 +17,18 @@ function sendContactEmail(body) {
   axios
     .post(`${baseURL}/api/user`, requestData)
     .then((response) => {
-      if (response.status === 200) console.log(response.message);
-      else throw new Error("failed to fetch request!");
-    })
-    .catch((error) => {
-      // Handle any errors that occur during the request
-      console.error("Error:", error);
-    });
-}
-
-const postFormData = async (name, email, message, toastId) => {
-  const result = await axios
-    .post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}`,
-      { fields: { name: name, email: email, message: message } },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
-    .then((response) => {
       if (response.status === 200) {
         toast.update(toastId, {
           render: "Thanks for reaching out!",
           type: toast.TYPE.SUCCESS,
           autoClose: 5000,
         });
-        //send email to my personal mailbox
-        sendContactEmail({ name, email, message });
       } else {
-        throw new error("something went wrong!");
+        throw new Error("failed to fetch request!");
       }
     })
     .catch((error) => {
+      // Handle any errors that occur during the request
       if (!error.response) {
         toast.update(toastId, {
           render: "internet connection required!",
@@ -66,7 +43,48 @@ const postFormData = async (name, email, message, toastId) => {
         });
       }
     });
-};
+}
+
+// const postFormData = async (name, email, message, toastId) => {
+//   const result = await axios
+//     .post(
+//       `${process.env.NEXT_PUBLIC_BASE_URL}`,
+//       { fields: { name: name, email: email, message: message } },
+//       {
+//         headers: {
+//           Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_ACCESS_TOKEN}`,
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     )
+//     .then((response) => {
+//       if (response.status === 200) {
+//         toast.update(toastId, {
+//           render: "Thanks for reaching out!",
+//           type: toast.TYPE.SUCCESS,
+//           autoClose: 5000,
+//         });
+//         //send email to my personal mailbox
+//       } else {
+//         throw new error("something went wrong!");
+//       }
+//     })
+//     .catch((error) => {
+//       if (!error.response) {
+//         toast.update(toastId, {
+//           render: "internet connection required!",
+//           type: toast.TYPE.WARNING,
+//           autoClose: 5000,
+//         });
+//       } else {
+//         toast.update(toastId, {
+//           render: error,
+//           type: toast.TYPE.ERROR,
+//           autoClose: 5000,
+//         });
+//       }
+//     });
+// };
 const Contact = () => {
   const { theme } = useThemeContext();
   const [name, setName] = useState("");
@@ -85,7 +103,8 @@ const Contact = () => {
     emailInputRef.current.value = "";
     messageInputRef.current.value = "";
     // posting data to airtable
-    postFormData(name, email, message, toastRef.current);
+    // postFormData(name, email, message, toastRef.current);
+    sendContactEmail({ name, email, message }, toastRef.current);
   };
 
   return (
