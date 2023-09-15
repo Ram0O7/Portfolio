@@ -12,6 +12,13 @@ function useLocalStorage(key, fallbackTheme) {
       const storedtheme = localStorage.getItem(key);
       // If the theme exists, set it to the state Otherwise, use the fallback theme
       setTheme(storedtheme ? storedtheme : fallbackTheme);
+      if (storedtheme === "furiastic" || storedtheme === "elegent") {
+        setProseInvert("prose-invert");
+        setMode("dark");
+      } else {
+        setProseInvert("");
+        setMode("light");
+      }
     }
   }, [key, fallbackTheme]);
 

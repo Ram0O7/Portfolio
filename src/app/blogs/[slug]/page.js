@@ -3,11 +3,12 @@ import imageUrlBuilder from "@sanity/image-url";
 import BlogHeader from "@/components/ui/BlogHeader";
 import { getBlogs, getBlog } from "../fetchBolgs";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
-import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import BlogWrapper from "@/components/ui/BlogWrapper";
 import config from "@/config/sanity-config";
 import Link from "next/link";
 import Image from "next/image";
+import CopyBtn from "@/lib/CopyBtn";
 
 const builder = imageUrlBuilder(config);
 function urlFor(source) {
@@ -38,10 +39,11 @@ export async function generateStaticParams() {
 const components = {
   types: {
     code: (props) => (
-      <div className="my-2">
-        <SyntaxHighlighter language={props.value.language} style={dracula}>
+      <div className="relative my-2">
+        <SyntaxHighlighter language={props.value.language} style={vs2015}>
           {props.value.code}
         </SyntaxHighlighter>
+        <CopyBtn style={"absolute top-2 right-2 text-lg lg:text-xl"} />
       </div>
     ),
     image: ({ value }) => (

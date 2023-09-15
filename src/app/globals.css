@@ -88,6 +88,12 @@ header {
   right: 0;
   z-index: 1000;
 }
+button .clipboard_check {
+  fill: rgb(85, 155, 85);
+}
+button .clipboard {
+  fill: rgb(85, 85, 155);
+}
 
 /********** styling scrollbars based on themes **************/
 .light::-webkit-scrollbar {
