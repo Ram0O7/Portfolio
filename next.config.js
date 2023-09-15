@@ -15,6 +15,12 @@ module.exports = {
         port: "",
         pathname: "/random/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+        pathname: "/images/**",
+      },
     ],
   },
   async redirects() {

@@ -1,61 +1,76 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import dynamic from "next/dynamic";
+import { PortableText } from "@portabletext/react";
+import imageUrlBuilder from "@sanity/image-url";
 import BlogHeader from "@/components/ui/BlogHeader";
-const CodeHighlight = dynamic(() => import("@/components/ui/CodeHighlight"), {
-  ssr: false,
-  loading: () => (
-    <h1 className="text-3xl text-center mt-40 font-bold animate-pulse">
-      Loading...
-    </h1>
-  ),
-});
+import { getBlogs, getBlog } from "../fetchBolgs";
+import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import BlogWrapper from "@/components/ui/BlogWrapper";
+import config from "@/config/sanity-config";
+import Link from "next/link";
+import Image from "next/image";
+
+const builder = imageUrlBuilder(config);
+function urlFor(source) {
+  return builder.image(source);
+}
 
 export async function generateMetadata({ params }) {
   // read route params
   const slug = params.slug;
 
   // fetch data
-  const page = getPost(slug);
+  const blog = await getBlog(slug);
 
   return {
-    title: page.frontMatter.title,
-    description: page.frontMatter.description,
+    title: blog.title,
+    description: blog.description,
   };
 }
 
 export async function generateStaticParams() {
-  const files = fs.readdirSync(path.join("blogs"));
-  const paths = files.map((filename) => ({
-    slug: filename.replace(".mdx", ""),
+  const blogs = await getBlogs();
+  const paths = blogs.map((blog) => ({
+    slug: blog.slug,
   }));
   return paths;
 }
 
-function getPost(slug) {
-  const markdownFile = fs.readFileSync(
-    path.join("blogs", slug + ".mdx"),
-    "utf-8"
-  );
-  const { data: frontMatter, content } = matter(markdownFile);
-  return {
-    frontMatter,
-    slug,
-    content,
-  };
-}
-export default function Page({ params }) {
-  const props = getPost(params.slug);
+const components = {
+  types: {
+    code: (props) => (
+      <div className="my-2">
+        <SyntaxHighlighter language={props.value.language} style={dracula}>
+          {props.value.code}
+        </SyntaxHighlighter>
+      </div>
+    ),
+    image: ({ value }) => (
+      <div className="relative object-cover w-full h-72 sm:h-96 sm:w-4/5 mx-auto overflow-hidden">
+        <Image
+          src={urlFor(value.asset._ref).auto("format").fit("max").toString()}
+          alt={value.alt}
+          fill={true}
+          placeholder="blur"
+          blurDataURL="/images/backgroundEffect.jpg"
+          className="object-cover rounded-sm"
+        />
+      </div>
+    ),
+  },
+  marks: {
+    link: ({ value, children }) => {
+      return <Link href={`https://${value?.href}`}>{children}</Link>;
+    },
+  },
+};
+
+export default async function Page({ params }) {
+  const blog = await getBlog(params.slug);
 
   return (
-    <CodeHighlight>
-      <BlogHeader
-        title={props.frontMatter.title}
-        tags={props.frontMatter.tags}
-      />
-      <MDXRemote source={props.content} />
-    </CodeHighlight>
+    <BlogWrapper>
+      <BlogHeader title={blog.title} tags={blog.tags} />
+      <PortableText value={blog.content} components={components} />
+    </BlogWrapper>
   );
 }

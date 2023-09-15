@@ -4,10 +4,9 @@ import useTheme from "@/utils/themeManager";
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useTheme();
-  const [mode, setMode] = useState("light");
-  // for blag post styling purposes
-  const [proseInvert, setProseInvert] = useState("");
+  const [theme, setTheme, mode, setMode, proseInvert, setProseInvert] =
+    useTheme();
+
   // toggle states for mobile devices
   const [isNavOpen, setIsNavOpen] = useState(false);
   const toggleNav = () => {

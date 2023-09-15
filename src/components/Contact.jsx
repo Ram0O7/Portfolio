@@ -45,46 +45,6 @@ function sendContactEmail(body, toastId) {
     });
 }
 
-// const postFormData = async (name, email, message, toastId) => {
-//   const result = await axios
-//     .post(
-//       `${process.env.NEXT_PUBLIC_BASE_URL}`,
-//       { fields: { name: name, email: email, message: message } },
-//       {
-//         headers: {
-//           Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_ACCESS_TOKEN}`,
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     )
-//     .then((response) => {
-//       if (response.status === 200) {
-//         toast.update(toastId, {
-//           render: "Thanks for reaching out!",
-//           type: toast.TYPE.SUCCESS,
-//           autoClose: 5000,
-//         });
-//         //send email to my personal mailbox
-//       } else {
-//         throw new error("something went wrong!");
-//       }
-//     })
-//     .catch((error) => {
-//       if (!error.response) {
-//         toast.update(toastId, {
-//           render: "internet connection required!",
-//           type: toast.TYPE.WARNING,
-//           autoClose: 5000,
-//         });
-//       } else {
-//         toast.update(toastId, {
-//           render: error,
-//           type: toast.TYPE.ERROR,
-//           autoClose: 5000,
-//         });
-//       }
-//     });
-// };
 const Contact = () => {
   const { theme } = useThemeContext();
   const [name, setName] = useState("");
@@ -102,8 +62,7 @@ const Contact = () => {
     nameInputRef.current.value = "";
     emailInputRef.current.value = "";
     messageInputRef.current.value = "";
-    // posting data to airtable
-    // postFormData(name, email, message, toastRef.current);
+    // posting data to airtable and reacieving as email from aws
     sendContactEmail({ name, email, message }, toastRef.current);
   };
 

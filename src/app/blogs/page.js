@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import blogs from "@/lib/BlogMetaData";
 import { isoToLongDateString } from "@/lib/DateFromatted";
+import { getBlogs } from "./fetchBolgs";
 
 export const metadata = {
   title: "Blog",
@@ -9,7 +9,9 @@ export const metadata = {
     "Rk's blog page, where you can find blogs about various interesting progrmming stuffs.",
 };
 
-export default function Blog() {
+export default async function Blog() {
+  const blogs = await getBlogs();
+
   return (
     <div className="py-12">
       <div className="blogs flex flex-col gap-10 sm:gap-12">
@@ -18,13 +20,13 @@ export default function Blog() {
             <Link
               href={"/blogs/" + blog.slug}
               passHref
-              key={blog.slug}
+              key={blog._id}
               className="flex flex-col sm:grid grid-cols-6 justify-between items-center gap-6"
             >
               <div className="relative w-full h-60 sm:h-48 col-span-2">
                 <Image
-                  src={`${blog.meta.thumbnail}`}
-                  alt="blog image"
+                  src={`${blog.image}`}
+                  alt={`${blog.alt}`}
                   fill={true}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   placeholder="blur"
@@ -34,12 +36,10 @@ export default function Blog() {
               </div>
               <div className="flex flex-col gap-2 sm:gap-4 col-span-4">
                 <span className="text-xs text-text-primary">
-                  {isoToLongDateString(blog.meta.date)}
+                  {isoToLongDateString(blog._createdAt)}
                 </span>
-                <h1 className="text-2xl sm:text-3xl">{blog.meta.title}</h1>
-                <p className="text-sm text-text-primary">
-                  {blog.meta.description}
-                </p>
+                <h1 className="text-2xl sm:text-3xl">{blog.title}</h1>
+                <p className="text-sm text-text-primary">{blog.description}</p>
               </div>
             </Link>
           );

@@ -69,12 +69,8 @@ const Project = () => {
                   ))}
                 </div>
                 <div className="flex gap-4 mt-2">
-                  <Button
-                    text={"view project"}
-                    url={website}
-                    target={"_blank"}
-                  />
-                  <Button text={"view code"} url={repo} target={"_blank"} />
+                  <Button text={"view project"} url={website} />
+                  <Button text={"view code"} url={repo} />
                 </div>
               </div>
             )
