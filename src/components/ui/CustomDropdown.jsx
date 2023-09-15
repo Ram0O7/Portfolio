@@ -1,7 +1,6 @@
 "use client";
 import { useThemeContext } from "@/context/ThemeContext";
 import React, { useEffect, useRef, useState } from "react";
-import autoAnimate from "@formkit/auto-animate";
 import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
 import { motion } from "framer-motion";
 
