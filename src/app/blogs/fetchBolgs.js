@@ -1,6 +1,5 @@
 import config from "@/config/sanity-config";
 import { createClient, groq } from "next-sanity";
-
 export async function getBlogs() {
   const blogs = await createClient(config).fetch(
     groq`*[_type == "blog" && !(_id in path("drafts.**"))]{
