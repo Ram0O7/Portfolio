@@ -89,10 +89,10 @@ header {
   z-index: 1000;
 }
 button .clipboard_check {
-  fill: rgb(85, 155, 85);
+  fill: rgb(25, 100, 75);
 }
 button .clipboard {
-  fill: rgb(85, 85, 155);
+  fill: rgb(25, 75, 100);
 }
 
 /********** styling scrollbars based on themes **************/
