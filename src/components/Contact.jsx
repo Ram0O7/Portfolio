@@ -1,12 +1,11 @@
 "use client";
 import React, { useRef, useState } from "react";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { baseURL } from "../../config";
 import { useThemeContext } from "@/context/ThemeContext";
 
-function sendContactEmail(body, toastId) {
+async function sendContactEmail(body, toastId) {
   // Define the data you want to send in the request body
   const requestData = {
     name: body.name,
@@ -14,39 +13,54 @@ function sendContactEmail(body, toastId) {
     message: body.message,
   };
 
-  axios
-    .post(`${baseURL}/api/user`, requestData)
-    .then((response) => {
-      if (response.status === 200) {
-        toast.update(toastId, {
-          render: "Thanks for reaching out!",
-          type: toast.TYPE.SUCCESS,
-          autoClose: 5000,
-        });
-      } else {
-        throw new Error("failed to fetch request!");
-      }
-    })
-    .catch((error) => {
-      // Handle any errors that occur during the request
-      if (!error.response) {
-        toast.update(toastId, {
-          render: "internet connection required!",
-          type: toast.TYPE.WARNING,
-          autoClose: 5000,
-        });
-      } else {
-        toast.update(toastId, {
-          render: error,
-          type: toast.TYPE.ERROR,
-          autoClose: 5000,
-        });
-      }
+  try {
+    const result = await fetch(`${baseURL}/api/user`, {
+      method: "POST",
+      body: JSON.stringify(requestData),
     });
+    //making fetch request to backend to store client's data to the database
+    const { message, statusCode } = await result.json();
+    // extracting the response data to show appropriate messages according to the status code recieved
+    if (statusCode === 201) {
+      toast.update(toastId, {
+        render: message,
+        type: toast.TYPE.SUCCESS,
+        autoClose: 5000,
+      });
+    } else if (statusCode === 400) {
+      toast.update(toastId, {
+        render: message,
+        type: toast.TYPE.WARNING,
+        autoClose: 5000,
+      });
+    } else {
+      toast.update(toastId, {
+        render: message,
+        type: toast.TYPE.ERROR,
+        autoClose: 5000,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    // Handle any errors that occur during the request
+    if (!error.response) {
+      toast.update(toastId, {
+        render: "internet connection required!",
+        type: toast.TYPE.WARNING,
+        autoClose: 5000,
+      });
+    } else {
+      toast.update(toastId, {
+        render: error,
+        type: toast.TYPE.ERROR,
+        autoClose: 5000,
+      });
+    }
+  }
 }
 
 const Contact = () => {
-  const { theme } = useThemeContext();
+  const { theme, mode } = useThemeContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -122,7 +136,7 @@ const Contact = () => {
           </button>
         </div>
       </form>
-      <ToastContainer theme="dark" autoClose={false} />
+      <ToastContainer theme={mode} autoClose={10000} />
     </div>
   );
 };

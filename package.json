@@ -17,6 +17,7 @@
     "eslint-config-next": "13.4.13",
     "framer-motion": "^10.16.4",
     "hamburger-react": "^2.5.0",
+    "mongoose": "^7.5.2",
     "next": "13.4.13",
     "next-sanity": "^5.5.3",
     "postcss": "8.4.27",

@@ -1,11 +1,10 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
+import connectToDatabase from "@/utils/db";
+import Client from "@/models/Client";
 
-export async function POST(request) {
-  const emailBody = await request.json();
-  const url = process.env.EMAILENDPOINT;
+const registerToAirtable = async (emailBody) => {
   const airtableUrl = process.env.AIRTABLE_URL;
-
   const result = axios
     .post(
       airtableUrl,
@@ -34,19 +33,40 @@ export async function POST(request) {
     .catch((error) => {
       console.log(error);
     });
+};
+export async function POST(request) {
+  await connectToDatabase();
+  const emailBody = await request.json();
+  const emailEndpointUrl = process.env.EMAILENDPOINT;
 
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(emailBody),
-  });
+  try {
+    const result = await Client.create({ ...emailBody });
+    // register client's data to airtable
+    await registerToAirtable(emailBody);
+    // sending myself a personal email
+    await fetch(emailEndpointUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(emailBody),
+    });
 
-  const data = await res.json();
-
-  return NextResponse.json({
-    message: "response recorded successfully!",
-    data,
-  });
+    return NextResponse.json({
+      message: "thanks for reaching out!",
+      statusCode: 201,
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.code === 11000) {
+      return NextResponse.json({
+        message: "info already recieved!",
+        statusCode: 400,
+      });
+    }
+    return NextResponse.json({
+      message: "unexpected error occured, try again!",
+      statusCode: 500,
+    });
+  }
 }

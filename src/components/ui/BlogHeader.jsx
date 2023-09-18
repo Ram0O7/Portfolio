@@ -20,10 +20,10 @@ const BlogHeader = ({ title, tags }) => {
   return (
     <>
       <h1>{title}</h1>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap">
         {tags.map((tag) => {
           return (
-            <p key={tag}>
+            <p key={tag} className="mr-4 mb-0">
               <span
                 className={
                   tagColors[tag.toLowerCase()] ||

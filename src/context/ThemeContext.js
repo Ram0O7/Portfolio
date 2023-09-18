@@ -17,7 +17,7 @@ export const ThemeProvider = ({ children }) => {
     // for scrollbar styling purposes
     document.body.classList.remove("dark", "light");
     document.body.classList.add(mode);
-  }, [theme]);
+  }, [mode, theme]);
 
   const updateTheme = (theme) => {
     setTheme(theme);
@@ -31,7 +31,7 @@ export const ThemeProvider = ({ children }) => {
   };
   return (
     <ThemeContext.Provider
-      value={{ updateTheme, theme, proseInvert, isNavOpen, toggleNav }}
+      value={{ updateTheme, theme, proseInvert, isNavOpen, toggleNav, mode }}
     >
       <body className={`theme bg-${theme}-bg text-${theme}-txt`}>
         {children}
