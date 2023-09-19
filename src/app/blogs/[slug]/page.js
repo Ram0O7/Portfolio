@@ -52,6 +52,7 @@ const components = {
           src={urlFor(value.asset._ref).auto("format").fit("max").toString()}
           alt={value.alt}
           fill={true}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           placeholder="blur"
           blurDataURL="/images/backgroundEffect.jpg"
           className="object-cover rounded-sm"

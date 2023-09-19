@@ -1,3 +1,5 @@
+import Like from "./Like/Like";
+
 const BlogHeader = ({ title, tags }) => {
   const tagColors = {
     javascript: "text-yellow-500",
@@ -19,7 +21,10 @@ const BlogHeader = ({ title, tags }) => {
 
   return (
     <>
-      <h1>{title}</h1>
+      <div className="flex items-start gap-2">
+        <h1>{title}</h1>
+        <Like />
+      </div>
       <div className="flex flex-wrap">
         {tags.map((tag) => {
           return (

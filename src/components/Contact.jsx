@@ -51,7 +51,7 @@ async function sendContactEmail(body, toastId) {
       });
     } else {
       toast.update(toastId, {
-        render: error,
+        render: "falid to recieve info, try again!",
         type: toast.TYPE.ERROR,
         autoClose: 5000,
       });
@@ -136,7 +136,7 @@ const Contact = () => {
           </button>
         </div>
       </form>
-      <ToastContainer theme={mode} autoClose={10000} />
+      <ToastContainer theme={mode} autoClose={false} />
     </div>
   );
 };
