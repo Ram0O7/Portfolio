@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 import { Roboto_Condensed } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
+import AuthProvider from "@/context/AuthProvider";
 
 const roboto_condensed = Roboto_Condensed({
   subsets: ["latin"],
@@ -47,9 +48,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={roboto_condensed.className}>
       <ThemeProvider>
-        <Navbar socials={socials} />
-        <main>{children}</main>
-        <Footer socials={socials} />
+        <AuthProvider>
+          <Navbar socials={socials} />
+          <main>{children}</main>
+          <Footer socials={socials} />
+        </AuthProvider>
       </ThemeProvider>
     </html>
   );

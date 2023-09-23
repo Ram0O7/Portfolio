@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
+import { DATABASE_URI } from "../../config";
 async function connectToDatabase() {
   try {
-    const mongoURI = process.env.MONGO_URI;
-    if (!mongoURI) {
-      throw new Error("MONGO_URI is not defined");
+    if (!DATABASE_URI) {
+      throw new Error("DATABASE_URI is not defined");
     }
-    await mongoose.connect(mongoURI, {
+    await mongoose.connect(DATABASE_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

@@ -122,6 +122,10 @@ button .clipboard {
   animation-play-state: paused;
 }
 
+.commentBody {
+  min-height: 16rem;
+}
+
 @keyframes slide {
   0% {
     transform: translateX(0);

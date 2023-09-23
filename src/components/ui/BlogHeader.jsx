@@ -37,7 +37,7 @@ const BlogHeader = ({ title, tags }) => {
               >
                 #
               </span>
-              {tag}
+              {tag.toUpperCase()}
             </p>
           );
         })}

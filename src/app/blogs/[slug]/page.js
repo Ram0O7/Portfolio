@@ -9,6 +9,7 @@ import config from "@/config/sanity-config";
 import Link from "next/link";
 import Image from "next/image";
 import CopyBtn from "@/lib/CopyBtn";
+import Comment from "@/components/Comment";
 
 const builder = imageUrlBuilder(config);
 function urlFor(source) {
@@ -74,6 +75,7 @@ export default async function Page({ params }) {
     <BlogWrapper>
       <BlogHeader title={blog.title} tags={blog.tags} />
       <PortableText value={blog.content} components={components} />
+      <Comment blogpost={params.slug} />
     </BlogWrapper>
   );
 }
