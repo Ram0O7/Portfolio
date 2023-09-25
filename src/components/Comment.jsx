@@ -3,50 +3,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaTrash } from "react-icons/fa";
 import { useThemeContext } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
-import { useSession } from "next-auth/react";
-import { baseURL } from "../../config";
-import axios from "axios";
+import { signIn, useSession } from "next-auth/react";
+import { getComments, deleteComment, postComment } from "@/utils/queryComments";
 import { timeSince } from "@/lib/DateFromatted";
-
-const postComment = async (comment, slug) => {
-  try {
-    const response = await fetch(`${baseURL}/api/blogposts/${slug}/comments`, {
-      method: "POST",
-      body: JSON.stringify({ blogSlug: slug, ...comment }),
-    });
-    const result = await response.json();
-    console.log(result.message);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-const getComments = async (slug) => {
-  try {
-    const response = await axios.get(
-      `${baseURL}/api/blogposts/${slug}/comments`
-    );
-    const result = response.data;
-    return result.comments;
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-const deleteComment = async (slug, id) => {
-  try {
-    const response = await fetch(`${baseURL}/api/blogposts/${slug}/comments`, {
-      method: "DELETE",
-      body: JSON.stringify({ id }),
-    });
-    const result = await response.json();
-    console.log(result.message);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+import { useRouter } from "next/navigation";
 
 export default function Comment({ blogpost }) {
-  const { data: session, status } = useSession({ required: true });
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   const { theme } = useThemeContext();
   const [comments, setComments] = useState([]);
@@ -66,37 +30,43 @@ export default function Comment({ blogpost }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //clearing the form
-    contentInputRef.current.value = "";
-    setComments([
-      ...comments,
-      {
-        content,
-        user: {
-          image: session.user.image,
-          name: session.user.name,
-          email: session.user.email,
+    if (status === "authenticated") {
+      //clearing the form
+      contentInputRef.current.value = "";
+      setComments([
+        ...comments,
+        {
+          content,
+          user: {
+            image: session.user.image,
+            name: session.user.name,
+            email: session.user.email,
+          },
+          updatedAt: new Date(),
         },
-        updatedAt: new Date(),
-      },
-    ]);
-    postComment(
-      {
-        content,
-        user: {
-          image: session.user.image,
-          name: session.user.name,
-          email: session.user.email,
+      ]);
+      postComment(
+        {
+          content,
+          user: {
+            image: session.user.image,
+            name: session.user.name,
+            email: session.user.email,
+          },
         },
-      },
-      blogpost
-    );
+        blogpost
+      );
+    } else {
+      if (confirm("sign in to add comments!")) {
+        signIn();
+      }
+    }
   };
 
   useEffect(() => {
     const getAllComments = async () => {
       const comments = await getComments(blogpost);
-      setComments([...comments]);
+      comments && setComments([...comments]);
     };
     getAllComments();
   }, []);
@@ -106,7 +76,7 @@ export default function Comment({ blogpost }) {
       className={`py-8 lg:py-16 mt-16 flex flex-col gap-4 border-t border-${theme}-txt`}
     >
       <h1 className="text-4xl sm:text-5xl lg:text-6xl">Comments</h1>
-      {status === "authenticated" && (
+      {status === "authenticated" ? (
         <div className="commentBody flex flex-col gap-8 py-8">
           {comments.length === 0 && (
             <p className={`text-center text-sm text-${theme}-txt/70`}>
@@ -152,6 +122,20 @@ export default function Comment({ blogpost }) {
               </motion.div>
             );
           })}
+        </div>
+      ) : (
+        <div className=" commentBody flex flex-wrap gap-1 items-center justify-center">
+          <p className={`text-center text-sm text-${theme}-txt/70`}>
+            you need to be signed in, In order to like, view or add comments to
+            this blogpost.
+            <span className="text-lg">&#128546;</span>
+          </p>
+          <button
+            className={`text-${theme}-accent text-sm hover:underline`}
+            onClick={() => signIn()}
+          >
+            sign in
+          </button>
         </div>
       )}
       <form

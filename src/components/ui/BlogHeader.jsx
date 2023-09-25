@@ -1,6 +1,6 @@
 import Like from "./Like/Like";
 
-const BlogHeader = ({ title, tags }) => {
+const BlogHeader = ({ title, tags, blogpost }) => {
   const tagColors = {
     javascript: "text-yellow-500",
     html: "text-red-500",
@@ -23,7 +23,7 @@ const BlogHeader = ({ title, tags }) => {
     <>
       <div className="flex items-start gap-2">
         <h1>{title}</h1>
-        <Like />
+        <Like blogpost={blogpost} />
       </div>
       <div className="flex flex-wrap">
         {tags.map((tag) => {

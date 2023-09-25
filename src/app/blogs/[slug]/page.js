@@ -73,7 +73,7 @@ export default async function Page({ params }) {
 
   return (
     <BlogWrapper>
-      <BlogHeader title={blog.title} tags={blog.tags} />
+      <BlogHeader title={blog.title} tags={blog.tags} blogpost={params.slug} />
       <PortableText value={blog.content} components={components} />
       <Comment blogpost={params.slug} />
     </BlogWrapper>

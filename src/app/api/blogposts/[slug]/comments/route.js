@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Comment } from "@/models/BlogPost";
 import connectToDatabase from "@/utils/db";
+import mongoose from "mongoose";
 
 export async function POST(request) {
   const comment = await request.json();
@@ -16,9 +17,11 @@ export async function POST(request) {
     return NextResponse.json({
       message: "something went wrong, try again!",
     });
+  } finally {
+    mongoose.connection.close();
   }
 }
-export async function GET({ params }) {
+export async function GET(request, { params }) {
   const { slug } = params;
   await connectToDatabase();
 
@@ -28,7 +31,7 @@ export async function GET({ params }) {
       "user",
       "updatedAt",
     ]);
-    console.log(result[0]);
+    console.log(result);
 
     return NextResponse.json({
       message: "comments fetched successfully!",
@@ -38,6 +41,8 @@ export async function GET({ params }) {
     return NextResponse.json({
       message: "something went wrong, try again!",
     });
+  } finally {
+    mongoose.connection.close();
   }
 }
 export async function DELETE(request) {
@@ -56,5 +61,7 @@ export async function DELETE(request) {
     return NextResponse.json({
       message: "something went wrong, try again!",
     });
+  } finally {
+    mongoose.connection.close();
   }
 }

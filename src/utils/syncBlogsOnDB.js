@@ -20,4 +20,4 @@ export async function syncBlogsOnDB() {
   }
 }
 
-//   syncBlogsOnDB();
+// syncBlogsOnDB();

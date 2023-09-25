@@ -2,9 +2,11 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   email: { type: String },
-  image: { type: String },
-  name: { type: String },
-  likedBlogs: [{ blogSlug: { type: String } }],
+  likedBlogs: {
+    type: [String],
+    unique: true,
+    index: true,
+  },
 });
 
 const commentSchema = new mongoose.Schema(
@@ -22,8 +24,11 @@ const commentSchema = new mongoose.Schema(
 
 const blogPostSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true },
-  likes: Number,
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  likes: {
+    type: [String],
+    unique: true,
+    index: true,
+  },
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

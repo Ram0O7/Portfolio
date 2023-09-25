@@ -190,6 +190,8 @@ module.exports = {
         "elegent-secondary-accent": "#777",
         /* Button Background Color */
         "elegent-btn": "#ffcc00",
+        //paper color for profile container
+        paper: "#f4f0e8",
       },
     },
   },

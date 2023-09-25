@@ -123,7 +123,11 @@ button .clipboard {
 }
 
 .commentBody {
-  min-height: 16rem;
+  min-height: 12rem;
+}
+
+.card {
+  width: min(90%, 30rem);
 }
 
 @keyframes slide {

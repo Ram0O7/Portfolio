@@ -3,6 +3,7 @@ import Link from "next/link";
 import SelectTheme from "./ui/SelectTheme";
 import { useThemeContext } from "@/context/ThemeContext";
 import { Divide as Hamburger } from "hamburger-react";
+import { useSession } from "next-auth/react";
 
 const navLinks = [
   { name: "home", url: "/" },
@@ -12,6 +13,7 @@ const navLinks = [
 
 const Navbar = () => {
   const { theme, isNavOpen, toggleNav } = useThemeContext();
+  const { status } = useSession();
   return (
     <header
       className={`flex items-center justify-between py-1 sm:py-2 bg-${theme}-bg/60 backdrop-blur-md shadow-sm`}
@@ -54,6 +56,16 @@ const Navbar = () => {
               </li>
             );
           })}
+          {status === "authenticated" && (
+            <li onClick={toggleNav}>
+              <Link
+                href="/profile"
+                className={`text-sm sm:text-lg hover:text-${theme}-accent font-semibold hover:underline underline-offset-2`}
+              >
+                profile
+              </Link>
+            </li>
+          )}
           <SelectTheme />
         </ul>
       </nav>
