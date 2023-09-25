@@ -1,32 +1,23 @@
-import { BlogPost } from "@/models/BlogPost";
+import { User } from "@/models/BlogPost";
 import connectToDatabase from "@/utils/db";
-import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-export async function POST(request) {
-  const blogposts = await request.json();
+export async function GET(request) {
+  const url = new URL(request.url);
+  const searchParams = new URLSearchParams(url.search);
+  const email = searchParams.get("email");
   await connectToDatabase();
   try {
-    //getting all documents from the database
-    const blogsOnDB = await BlogPost.find();
-    const addedBlogs = new Set(blogsOnDB.map((blog) => blog.slug));
-    // taking the difference of the blogs on db to the blogs to upload so that only the unique ones are added
-    const blogsToSaveOnDB = blogposts.filter(
-      (blogpost) => !addedBlogs.has(blogpost.slug)
-    );
-    if (blogsToSaveOnDB.length > 0) {
-      const data = await BlogPost.insertMany(blogsToSaveOnDB);
+    const Blogs = await User.findOne({
+      email,
+    }).select("likedBlogs -_id");
+    const likedBlogs = Blogs ? Blogs.likedBlogs : [];
 
-      return NextResponse.json({
-        message: "successfully added blogs to the database!",
-        data,
-      });
-    } else {
-      return NextResponse.json({ message: "blogs are in sync!" });
-    }
+    return NextResponse.json({
+      message: "liked blogs fetched successfully!",
+      likedBlogs,
+    });
   } catch (error) {
     return NextResponse.json({ message: error.message });
-  } finally {
-    mongoose.connection.close();
   }
 }

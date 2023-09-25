@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  email: { type: String },
+  email: { type: String, unique: true },
   likedBlogs: {
     type: [String],
-    unique: true,
-    index: true,
   },
 });
 
@@ -23,12 +21,8 @@ const commentSchema = new mongoose.Schema(
 );
 
 const blogPostSchema = new mongoose.Schema({
-  slug: { type: String, required: true, unique: true },
-  likes: {
-    type: [String],
-    unique: true,
-    index: true,
-  },
+  slug: { type: String, unique: true },
+  likes: { type: Number, default: 0 },
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

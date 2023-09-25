@@ -1,11 +1,8 @@
 import Link from "next/link";
-import { getBlogs } from "@/app/blogs/fetchBolgs";
 import { isoToLongDateString } from "@/lib/DateFromatted";
 import Image from "next/image";
 
-export default async function ShowBlogs() {
-  const blogs = await getBlogs();
-
+export default async function ShowBlogs({ blogs }) {
   return (
     <div className="blogs flex flex-col gap-10 sm:gap-12 py-12 max-w-3xl mx-auto">
       {blogs.map((blog) => {

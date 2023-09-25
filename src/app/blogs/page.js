@@ -1,4 +1,5 @@
 import ShowBlogs from "@/components/ShowBlogs";
+import { getBlogs } from "./fetchBolgs";
 
 export const metadata = {
   title: "Blog",
@@ -7,5 +8,6 @@ export const metadata = {
 };
 
 export default async function Blog() {
-  return <ShowBlogs />;
+  const blogs = await getBlogs();
+  return <ShowBlogs blogs={blogs} />;
 }

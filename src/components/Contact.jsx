@@ -14,7 +14,7 @@ async function sendContactEmail(body, toastId) {
   };
 
   try {
-    const result = await fetch(`${baseURL}/api/user/client`, {
+    const result = await fetch(`${baseURL}/api/client`, {
       method: "POST",
       body: JSON.stringify(requestData),
     });

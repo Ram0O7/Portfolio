@@ -9,7 +9,7 @@ export async function POST(request) {
 
   try {
     const result = await Comment.create({ ...comment });
-    console.log(result);
+
     return NextResponse.json({
       message: "comment successfully added to the database!",
     });
@@ -17,8 +17,6 @@ export async function POST(request) {
     return NextResponse.json({
       message: "something went wrong, try again!",
     });
-  } finally {
-    mongoose.connection.close();
   }
 }
 export async function GET(request, { params }) {
@@ -31,7 +29,6 @@ export async function GET(request, { params }) {
       "user",
       "updatedAt",
     ]);
-    console.log(result);
 
     return NextResponse.json({
       message: "comments fetched successfully!",
@@ -41,8 +38,6 @@ export async function GET(request, { params }) {
     return NextResponse.json({
       message: "something went wrong, try again!",
     });
-  } finally {
-    mongoose.connection.close();
   }
 }
 export async function DELETE(request) {
@@ -52,7 +47,6 @@ export async function DELETE(request) {
 
   try {
     const result = await Comment.findByIdAndDelete(id);
-    console.log(result);
 
     return NextResponse.json({
       message: "comment deleted successfully!",
@@ -61,7 +55,5 @@ export async function DELETE(request) {
     return NextResponse.json({
       message: "something went wrong, try again!",
     });
-  } finally {
-    mongoose.connection.close();
   }
 }

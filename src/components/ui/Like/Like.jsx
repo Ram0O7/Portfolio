@@ -2,17 +2,17 @@
 import { useEffect, useState } from "react";
 import "./like.css";
 import { getlikes, updatelikes } from "@/utils/queryLikes";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 export default function Like({ blogpost }) {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
 
   const updateLikesOnServer = async (newLikes) => {
     try {
       // Simulate an API request
-      await updatelikes(blogpost, session.user.email);
+      const isLiked = await updatelikes(blogpost, session.user.email);
       console.log("Likes updated on the server");
     } catch (error) {
       console.error("Failed to update likes on the server", error);
@@ -21,26 +21,35 @@ export default function Like({ blogpost }) {
 
   // Function to handle liking a post
   const handleLikeClick = () => {
-    if (!liked) {
-      setLiked(true);
-      // Optimistic update: immediately increment the like count
-      setLikes(likes + 1);
-      // Debounce sending the request to the server
-      setTimeout(() => {
-        updateLikesOnServer(likes + 1).finally(() => {
-          // Reset isLiking after the request is sent
-          setLiked(false);
-        });
-      }, 2000); // Debounce for 2 second
+    if (status === "authenticated") {
+      if (!liked) {
+        setLiked(true);
+        // Optimistic update: immediately increment the like count
+        setLikes(likes + 1);
+        // Debounce sending the request to the server
+        setTimeout(() => {
+          updateLikesOnServer(likes + 1);
+        }, 2000); // Debounce for 2 second
+      }
+    } else {
+      if (
+        confirm(
+          "you need to be signed in.\nIn order to add likes or comments to the blogposts."
+        )
+      ) {
+        signIn();
+      }
     }
   };
 
-  // useEffect(() => {
-  //   const getLikes = async () => {
-  //     const likes = await getLikes();
-  //   };
-  //   getLikes();
-  // }, []);
+  const updateLikeStatus = async () => {
+    const { likes } = await getlikes(blogpost);
+    setLikes(likes);
+  };
+
+  useEffect(() => {
+    updateLikeStatus();
+  }, []);
 
   return (
     <div
