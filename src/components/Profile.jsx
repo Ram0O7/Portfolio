@@ -1,6 +1,5 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
-import { syncBlogsOnDB } from "@/utils/syncBlogsOnDB";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useRouter } from "next/navigation";
 import Card from "./ui/Card";
@@ -46,12 +45,6 @@ export default function Profile() {
                 onClick={revalidateBlogs}
               >
                 revalidate blogs
-              </button>
-              <button
-                className={`btn after:bg-${theme}-secondary-accent relative uppercase tracking-widest pb-1`}
-                onClick={syncBlogsOnDB}
-              >
-                sync blogs
               </button>
             </>
           )}
