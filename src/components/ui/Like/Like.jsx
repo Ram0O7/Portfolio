@@ -9,10 +9,10 @@ export default function Like({ blogpost }) {
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
 
-  const updateLikesOnServer = async (newLikes) => {
+  const updateLikesOnServer = async () => {
     try {
       // Simulate an API request
-      const isLiked = await updatelikes(blogpost, session.user.email);
+      const isLiked = await updatelikes(blogpost, session?.user.email);
       console.log("Likes updated on the server");
     } catch (error) {
       console.error("Failed to update likes on the server", error);
@@ -43,8 +43,9 @@ export default function Like({ blogpost }) {
   };
 
   const updateLikeStatus = async () => {
-    const { likes } = await getlikes(blogpost);
-    setLikes(likes);
+    const { likes, hasLiked } = await getlikes(blogpost, session?.user.email);
+    likes && setLikes(likes);
+    setLiked(hasLiked);
   };
 
   useEffect(() => {

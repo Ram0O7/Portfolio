@@ -11,11 +11,14 @@ export const updatelikes = async (slug, likedBy) => {
     console.log(error.message);
   }
 };
-export const getlikes = async (slug) => {
+export const getlikes = async (slug, email) => {
   try {
-    const response = await fetch(`${baseURL}/api/blogposts/${slug}/likes`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `${baseURL}/api/blogposts/${slug}/likes/?email=${email}`,
+      {
+        method: "GET",
+      }
+    );
     const result = await response.json();
     return result;
   } catch (error) {

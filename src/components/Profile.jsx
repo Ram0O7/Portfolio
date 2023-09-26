@@ -3,6 +3,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useRouter } from "next/navigation";
 import Card from "./ui/Card";
+import Image from "next/image";
 // import { revalidatePath } from "next/cache";
 
 const revalidateBlogs = () => {
@@ -19,26 +20,30 @@ export default function Profile() {
   if (status === "authenticated") {
     return (
       <Card>
-        <h1 className="text-3xl font-extrabold">{session.user.name}</h1>
-        <h2 className="text-lg font-bold">{session.user.email}</h2>
-        <div className="relative">
-          <img
-            src={`${session.user.image}`}
-            alt="profile-image"
-            className="w-14 h-14 rounded-full"
+        <div className="relative overflow-hidden rounded-full w-28 h-28">
+          <Image
+            src={session.user?.image}
+            alt={session.user?.name}
+            width={112}
+            height={112}
+            className="object-cover !m-0"
           />
         </div>
+        <h1 className="text-3xl font-extrabold mb-6">
+          {session?.user.name || "Lalit"}
+        </h1>
+
         <button
           className={`btn after:bg-${theme}-secondary-accent relative uppercase tracking-widest pb-1`}
           onClick={() => {
             signOut();
-            router.back();
+            router.push("/");
           }}
         >
           sign out
         </button>
-        {session.user.email === "ram706860@gmail.com" &&
-          session.user.name.toLowerCase() === "ramkrishn rai" && (
+        {session?.user.email === "ram706860@gmail.com" &&
+          session?.user.name.toLowerCase() === "ramkrishn rai" && (
             <>
               <button
                 className={`btn after:bg-${theme}-secondary-accent relative uppercase tracking-widest pb-1`}

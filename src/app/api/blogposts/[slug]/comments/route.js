@@ -38,6 +38,8 @@ export async function GET(request, { params }) {
     return NextResponse.json({
       message: "something went wrong, try again!",
     });
+  } finally {
+    mongoose.connection.close();
   }
 }
 export async function DELETE(request) {
@@ -55,5 +57,7 @@ export async function DELETE(request) {
     return NextResponse.json({
       message: "something went wrong, try again!",
     });
+  } finally {
+    mongoose.connection.close();
   }
 }

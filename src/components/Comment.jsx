@@ -6,11 +6,10 @@ import { motion } from "framer-motion";
 import { signIn, useSession } from "next-auth/react";
 import { getComments, deleteComment, postComment } from "@/utils/queryComments";
 import { timeSince } from "@/lib/DateFromatted";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Comment({ blogpost }) {
   const { data: session, status } = useSession();
-  const router = useRouter();
 
   const { theme } = useThemeContext();
   const [comments, setComments] = useState([]);
@@ -96,10 +95,12 @@ export default function Comment({ blogpost }) {
               >
                 <div className="comment-info flex gap-2 items-center">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                    <img
-                      src={user.image}
-                      alt={user.name}
-                      className="w-full h-full object-cover !m-0"
+                    <Image
+                      src={user?.image}
+                      alt={user?.name}
+                      width={48}
+                      height={48}
+                      className="object-cover !m-0"
                     />
                   </div>
                   <p className="text-sm uppercase !m-0 font-bold">
@@ -108,7 +109,7 @@ export default function Comment({ blogpost }) {
                   <p className={`text-xs text-${theme}-txt/70`}>
                     {timeSince(updatedAt)}
                   </p>
-                  {session.user.email === user.email && (
+                  {session?.user.email === user.email && (
                     <button
                       onClick={() => handleDelete(_id)}
                       name="button"
@@ -124,18 +125,18 @@ export default function Comment({ blogpost }) {
           })}
         </div>
       ) : (
-        <div className=" commentBody flex flex-wrap gap-1 items-center justify-center">
-          <p className={`text-center text-sm text-${theme}-txt/70`}>
+        <div className=" commentBody flex flex-col justify-center items-center">
+          <p className={`text-sm text-center text-${theme}-txt/70`}>
             you need to be signed in, In order to like, view or add comments to
             this blogpost.
             <span className="text-lg">&#128546;</span>
+            <span
+              className={`text-${theme}-accent text-sm ml-1 hover:underline`}
+              onClick={() => signIn()}
+            >
+              sign in
+            </span>
           </p>
-          <button
-            className={`text-${theme}-accent text-sm hover:underline`}
-            onClick={() => signIn()}
-          >
-            sign in
-          </button>
         </div>
       )}
       <form

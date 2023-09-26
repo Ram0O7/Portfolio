@@ -2,6 +2,7 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 import connectToDatabase from "@/utils/db";
 import Client from "@/models/Client";
+import mongoose from "mongoose";
 
 const registerToAirtable = async (emailBody) => {
   const airtableUrl = process.env.AIRTABLE_URL;
@@ -31,26 +32,26 @@ const registerToAirtable = async (emailBody) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.message);
     });
 };
 export async function POST(request) {
   await connectToDatabase();
   const emailBody = await request.json();
-  // const emailEndpointUrl = process.env.EMAILENDPOINT;
+  const emailEndpointUrl = process.env.EMAILENDPOINT;
 
   try {
     const result = await Client.create({ ...emailBody });
     // register client's data to airtable
-    // await registerToAirtable(emailBody);
+    await registerToAirtable(emailBody);
     // sending myself a personal email
-    // await fetch(emailEndpointUrl, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(emailBody),
-    // });
+    await fetch(emailEndpointUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(emailBody),
+    });
 
     return NextResponse.json({
       message: "thanks for reaching out!",
@@ -67,5 +68,7 @@ export async function POST(request) {
       message: "something went wrong, try again!",
       statusCode: 500,
     });
+  } finally {
+    mongoose.connection.close();
   }
 }
