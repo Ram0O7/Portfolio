@@ -14,6 +14,7 @@ export default function Comment({ blogpost }) {
   const { theme } = useThemeContext();
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(true);
   const contentInputRef = useRef(null);
 
   const handleDelete = async (id) => {
@@ -66,6 +67,7 @@ export default function Comment({ blogpost }) {
     const getAllComments = async () => {
       const comments = await getComments(blogpost);
       comments && setComments([...comments]);
+      setLoading(false);
     };
     getAllComments();
   }, []);
@@ -84,6 +86,7 @@ export default function Comment({ blogpost }) {
               <span className="text-lg">&#128525;</span>
             </p>
           )}
+          {loading && <h2 className="text-center font-bold">Loading...</h2>}
           {comments.map((comment) => {
             const { content, user, updatedAt, _id } = comment;
             return (

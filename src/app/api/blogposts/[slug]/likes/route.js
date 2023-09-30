@@ -2,11 +2,13 @@ import { NextResponse } from "next/server";
 import connectToDatabase from "@/utils/db";
 import { BlogPost, User } from "@/models/BlogPost";
 import mongoose from "mongoose";
+import { redis } from "@/utils/redis";
 
 export async function PUT(request, { params }) {
   const { likedBy } = await request.json();
   const { slug } = params;
   await connectToDatabase();
+  const redisKey = slug + ":likes";
 
   try {
     const user = await User.findOne({ email: likedBy });
@@ -30,6 +32,7 @@ export async function PUT(request, { params }) {
         { $inc: { likes: 1 } },
         { upsert: true, new: true }
       );
+      await redis.del(redisKey);
     } else {
       throw new Error("already liked the blog!");
     }
@@ -40,17 +43,17 @@ export async function PUT(request, { params }) {
     return NextResponse.json({
       message: error.message,
     });
-  } finally {
-    mongoose.connection.close();
   }
 }
 export async function GET(request, { params }) {
+  await connectToDatabase();
   const { slug } = params;
   const url = new URL(request.url);
   const searchParams = new URLSearchParams(url.search);
   const email = searchParams.get("email");
+  let likes;
   let hasLiked = false;
-  await connectToDatabase();
+  const redisKey = slug + ":likes";
 
   try {
     if (email) {
@@ -62,19 +65,28 @@ export async function GET(request, { params }) {
         hasLiked = true;
       }
     }
+    const likesCache = await redis.get(redisKey);
 
+    if (likesCache) {
+      likes = likesCache;
+      return NextResponse.json({
+        message: "likes fetched from redis server successfully!",
+        likes,
+        hasLiked,
+      });
+    }
     const result = await BlogPost.findOne({ slug }).select("likes -_id");
-    let likes;
     if (!result) {
       const blogpost = new BlogPost({ slug, likes: 0 });
       await blogpost.save();
       likes = 0;
     } else {
-      likes = result.likes;
+      likes = +result.likes;
     }
 
+    await redis.set(redisKey, likes);
     return NextResponse.json({
-      message: "likes fetched successfully!",
+      message: "likes fetched from database successfully!",
       likes,
       hasLiked,
     });

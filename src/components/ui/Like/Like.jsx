@@ -12,8 +12,7 @@ export default function Like({ blogpost }) {
   const updateLikesOnServer = async () => {
     try {
       // Simulate an API request
-      const isLiked = await updatelikes(blogpost, session?.user.email);
-      console.log("Likes updated on the server");
+      await updatelikes(blogpost, session?.user.email);
     } catch (error) {
       console.error("Failed to update likes on the server", error);
     }

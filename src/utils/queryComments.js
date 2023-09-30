@@ -18,6 +18,7 @@ export const getComments = async (slug) => {
       `${baseURL}/api/blogposts/${slug}/comments`
     );
     const result = response.data;
+    console.log(result.message);
     return result.comments;
   } catch (error) {
     console.log(error.message);
