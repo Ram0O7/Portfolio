@@ -13,7 +13,7 @@ const navLinks = [
 
 const Navbar = () => {
   const { theme, isNavOpen, toggleNav } = useThemeContext();
-  const { status } = useSession();
+  const { data: session, status } = useSession();
   return (
     <header
       className={`flex items-center justify-between py-1 sm:py-2 bg-${theme}-bg/60 backdrop-blur-md shadow-sm`}
@@ -56,16 +56,18 @@ const Navbar = () => {
               </li>
             );
           })}
-          {status === "authenticated" && (
-            <li onClick={toggleNav}>
-              <Link
-                href="/profile"
-                className={`text-sm sm:text-lg hover:text-${theme}-accent font-semibold hover:underline underline-offset-2`}
-              >
-                profile
-              </Link>
-            </li>
-          )}
+          {status === "authenticated" &&
+            session.user.email ===
+              ("ram706860@gmail.com" || "rairamkrishn90@gmail.com") && (
+              <li onClick={toggleNav}>
+                <Link
+                  href="/admin"
+                  className={`text-sm sm:text-lg hover:text-${theme}-accent font-semibold hover:underline underline-offset-2`}
+                >
+                  admin
+                </Link>
+              </li>
+            )}
           <SelectTheme />
         </ul>
       </nav>

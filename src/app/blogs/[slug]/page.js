@@ -10,6 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import CopyBtn from "@/lib/CopyBtn";
 import Comment from "@/components/Comment";
+import HeaderImg from "@/components/ui/headerImg";
 
 const builder = imageUrlBuilder(config);
 function urlFor(source) {
@@ -48,22 +49,40 @@ const components = {
       </div>
     ),
     image: ({ value }) => (
-      <div className="relative object-cover w-full h-72 sm:h-96 sm:w-4/5 mx-auto overflow-hidden">
-        <Image
-          src={urlFor(value.asset._ref).auto("format").fit("max").toString()}
-          alt={value.alt}
-          fill={true}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          placeholder="blur"
-          blurDataURL="/images/backgroundEffect.jpg"
-          className="object-cover rounded-sm"
-        />
-      </div>
+      <>
+        <div className="relative object-cover w-full h-72 sm:h-96 sm:w-4/5 mx-auto overflow-hidden">
+          <Image
+            src={urlFor(value.asset._ref).auto("format").fit("max").toString()}
+            alt={value.alt}
+            fill={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            placeholder="blur"
+            blurDataURL="/images/backgroundEffect.jpg"
+            className="object-cover rounded-sm"
+          />
+        </div>
+        <div className="attribute pt-1">
+          <p className="text-xs text-center !m-0">
+            Photo by{" "}
+            <Link
+              href={`${value.metadata[1]}/?utm_source=ramkrishn+rai&utm_medium=referral`}
+            >
+              {value.metadata[0]}
+            </Link>{" "}
+            on{" "}
+            <Link
+              href={`${value.metadata[3]}/?utm_source=ramkrishn+rai&utm_medium=referral`}
+            >
+              {value.metadata[2]}
+            </Link>
+          </p>
+        </div>
+      </>
     ),
   },
   marks: {
     link: ({ value, children }) => {
-      return <Link href={`https://${value?.href}`}>{children}</Link>;
+      return <Link href={`${value?.href}`}>{children}</Link>;
     },
   },
 };
@@ -74,6 +93,7 @@ export default async function Page({ params }) {
   return (
     <BlogWrapper>
       <BlogHeader title={blog.title} tags={blog.tags} blogpost={params.slug} />
+      <HeaderImg img={blog.image} src={blog.source} metadata={blog.metadata} />
       <PortableText value={blog.content} components={components} />
       <Comment blogpost={params.slug} />
     </BlogWrapper>

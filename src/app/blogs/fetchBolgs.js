@@ -11,6 +11,7 @@ export async function getBlogs() {
         "slug": slug.current,
         "image": image.asset->url,
         "alt": image.alt,
+        "metadata":image.metadata,
       }`
   );
   return blogs;
@@ -26,6 +27,7 @@ export async function getBlog(slug) {
         "slug": slug.current,
         "image": image.asset->url,
         "alt": image.alt,
+        "metadata":image.metadata,
         content,
       }`,
     { slug }

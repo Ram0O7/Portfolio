@@ -35,7 +35,7 @@ const Footer = ({ socials }) => {
           })}
         </ul>
       </div>
-      <span className={`text-center sm:text-left text-${theme}-bg`}>
+      <span className={`text-center sm:text-left text-${theme}-accent`}>
         &copy; {new Date().getFullYear()} ramkrishnrai
       </span>
     </footer>

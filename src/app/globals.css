@@ -112,7 +112,7 @@ button .clipboard {
 }
 
 .theme {
-  transition: color 0.5s ease;
+  transition: background-color 0.2s ease;
 }
 
 .skill_slide {
