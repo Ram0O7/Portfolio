@@ -15,6 +15,11 @@ export const metadata = {
   title: "Ramkrishn Rai",
   description:
     "I'm a web developer passionate about making the web beautiful and accessible for everyone.",
+  icons: {
+    apple: ["/apple-touch-icon.png?v=4"],
+    shortcut: ["/apple-touch-icon.png"],
+  },
+  manifest: "/site.webmanifest",
 };
 
 const socials = [

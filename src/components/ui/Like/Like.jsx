@@ -43,7 +43,7 @@ export default function Like({ blogpost }) {
 
   const updateLikeStatus = async () => {
     const { likes, hasLiked } = await getlikes(blogpost, session?.user.email);
-    likes && setLikes(likes);
+    likes && setLikes(+likes);
     setLiked(hasLiked);
   };
 
