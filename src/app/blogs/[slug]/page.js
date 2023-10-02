@@ -1,6 +1,7 @@
 import { PortableText } from "@portabletext/react";
 import imageUrlBuilder from "@sanity/image-url";
 import BlogHeader from "@/components/ui/BlogHeader";
+import HeaderImg from "@/components/ui/HeaderImg";
 import { getBlogs, getBlog } from "../fetchBolgs";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
 import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -10,7 +11,6 @@ import Link from "next/link";
 import Image from "next/image";
 import CopyBtn from "@/lib/CopyBtn";
 import Comment from "@/components/Comment";
-import HeaderImg from "@/components/ui/headerImg";
 
 const builder = imageUrlBuilder(config);
 function urlFor(source) {
