@@ -14,7 +14,7 @@ const roboto_condensed = Roboto_Condensed({
 export const metadata = {
   title: "Ramkrishn Rai",
   description:
-    "I'm a web developer passionate about making the web beautiful and accessible for everyone.",
+    "I'm a passionate student and a programmer based in India. With a keen eye for design and a love for coding, I am a dedicated web developer with passion for contributing to the growth of evolving tech industry with as much little knowledge i have. Beyond the screen, I immerses in the world of sci-fi through movies and web series, finding inspiration for my creative endeavors. When not crafting incredible websites, you'll find me delving into programming and computer science discussions. My journey is all about blending the art of web development with the precision of programming, a perfect fusion for a successful future in the tech realm. 🚀💻 #WebDev #TechEnthusiast #SciFiLover",
   icons: {
     apple: ["/apple-touch-icon.png?v=4"],
     shortcut: ["/apple-touch-icon.png"],

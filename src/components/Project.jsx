@@ -1,17 +1,28 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "@/components/ui/Button";
-import projects from "@/utils/projects";
 import referToComponent from "@/utils/refer";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useThemeContext } from "@/context/ThemeContext";
+import { getProjects } from "@/app/blogs/fetchBolgs";
 
 const Project = () => {
   const { theme } = useThemeContext();
   const [load, setLoad] = useState(4);
+  const [projects, setProjects] = useState([]);
   const [loadingStatus, setLoadingStatus] = useState("more");
   const projectLoadRef = useRef(null);
+
+  const getAllProjects = async () => {
+    const projects = await getProjects();
+    console.log(projects);
+    setProjects([...projects]);
+  };
+
+  useEffect(() => {
+    getAllProjects();
+  }, []);
 
   const handleLoading = () => {
     setLoad((prev) => prev + 4);
@@ -35,10 +46,10 @@ const Project = () => {
       </div>
       <div className="projects uppercase py-8 lg:py-16 grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-x-8 sm:gap-y-16">
         {projects.map((project, index) => {
-          const { name, img, tags, repo, website } = project;
+          const { name, img, tags, repo, website, _id } = project;
           return (
             index < load && (
-              <div className="project flex flex-col gap-2" key={img}>
+              <div className="project flex flex-col gap-2" key={_id}>
                 <motion.div
                   initial={{ opacity: 0.4, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}

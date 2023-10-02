@@ -27,6 +27,12 @@ module.exports = {
         port: "",
         pathname: "/a/**",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+        pathname: "/u/**",
+      },
     ],
   },
   async redirects() {
