@@ -15,8 +15,8 @@ const Project = () => {
   const projectLoadRef = useRef(null);
 
   const getAllProjects = async () => {
+    //fetching projects dynamically from sanity
     const projects = await getProjects();
-    console.log(projects);
     setProjects([...projects]);
   };
 

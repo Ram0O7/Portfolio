@@ -7,7 +7,6 @@ export const postComment = async (comment, slug) => {
       body: JSON.stringify({ blogSlug: slug, ...comment }),
     });
     const result = await response.json();
-    console.log(result.message);
   } catch (error) {
     console.log(error.message);
   }
@@ -18,7 +17,7 @@ export const getComments = async (slug) => {
       `${baseURL}/api/blogposts/${slug}/comments`
     );
     const result = response.data;
-    console.log(result.message);
+
     return result.comments;
   } catch (error) {
     console.log(error.message);
@@ -32,7 +31,6 @@ export const deleteComment = async (slug, id) => {
       body: JSON.stringify({ id }),
     });
     const result = await response.json();
-    console.log(result.message);
   } catch (error) {
     console.log(error.message);
   }

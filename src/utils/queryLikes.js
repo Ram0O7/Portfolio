@@ -6,7 +6,7 @@ export const updatelikes = async (slug, likedBy) => {
       body: JSON.stringify({ likedBy }),
     });
     const result = await response.json();
-    console.log(result);
+
   } catch (error) {
     console.log(error.message);
   }
@@ -20,7 +20,7 @@ export const getlikes = async (slug, email) => {
       }
     );
     const result = await response.json();
-    console.log(result.message);
+
     return result;
   } catch (error) {
     console.log(error.message);
@@ -33,7 +33,7 @@ export async function getLikedBlogs(email) {
       method: "GET",
     });
     const result = await response.json();
-    console.log(result.message);
+
     return result;
   } catch (error) {
     console.log(error.message);

@@ -52,9 +52,15 @@ const socials = [
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={roboto_condensed.className}>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="9Z0foBGZB3OxNJrDIYn6fLZqGyfUVNLQwQGn1HW5z-Y"
+        />
+      </head>
       <ThemeProvider>
         <AuthProvider>
-          <Navbar socials={socials} />
+          <Navbar />
           <main>{children}</main>
           <Footer socials={socials} />
         </AuthProvider>
