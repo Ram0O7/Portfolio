@@ -42,9 +42,9 @@ export default function Like({ blogpost }) {
   };
 
   const updateLikeStatus = async () => {
-    const { likes, hasLiked } = await getlikes(blogpost, session?.user.email);
-    likes && setLikes(+likes);
-    setLiked(hasLiked);
+    const likeData = await getlikes(blogpost, session?.user.email);
+    setLikes(+likeData?.likes);
+    setLiked(likeData?.hasLiked);
   };
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function Like({ blogpost }) {
 
   return (
     <div
-      className="flex flex-col gap-1 items-center group max-w-fit scale-75"
+      className="flex flex-col gap-1 items-center group max-w-fit scale-75 self-start"
       onClick={handleLikeClick}
     >
       <div className="heart-bg flex items-center justify-center group-active:bg-pink-700/30 md:group-hover:bg-pink-700/30 bg-opacity-20">

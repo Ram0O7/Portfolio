@@ -8,7 +8,6 @@ export async function GET(request) {
   const searchParams = new URLSearchParams(url.search);
   const email = searchParams.get("email");
   const redisKey = email + ":likedBlogs";
-  await connectToDatabase();
   try {
     const likedBlogsCache = await redis.lrange(redisKey, 0, -1);
     const likedBlogsArray = likedBlogsCache.map((blog) => JSON.parse(blog)); //deserializing each element from json to normal objects
@@ -18,6 +17,7 @@ export async function GET(request) {
         likedBlogs: likedBlogsArray,
       });
     }
+    await connectToDatabase();
     const Blogs = await User.findOne({
       email,
     }).select("likedBlogs -_id");

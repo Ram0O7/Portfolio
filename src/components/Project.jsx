@@ -72,7 +72,7 @@ const Project = () => {
                 <div className={`tags flex gap-2 text-${theme}-txt/70`}>
                   {tags.map((tag) => (
                     <h2
-                      className="text-sm text-text-primary font-normal"
+                      className={`text-sm text-${theme}-txt/70 font-normal`}
                       key={tag}
                     >
                       {tag}

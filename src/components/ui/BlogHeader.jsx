@@ -1,6 +1,9 @@
+import getReadingTime from "@/lib/getReadingTime";
 import Like from "./Like/Like";
+import { timeSince } from "@/lib/DateFromatted";
+import { AiOutlineClockCircle, AiOutlineCalendar } from "react-icons/ai";
 
-const BlogHeader = ({ title, tags, blogpost }) => {
+const BlogHeader = ({ title, tags, blogpost, content, time }) => {
   const tagColors = {
     javascript: "text-yellow-500",
     html: "text-red-500",
@@ -21,14 +24,14 @@ const BlogHeader = ({ title, tags, blogpost }) => {
 
   return (
     <>
-      <div className="flex items-start gap-2">
-        <h1>{title}</h1>
+      <div className="flex items-center justify-between gap-2">
+        <h1 className="!m-0">{title}</h1>
         <Like blogpost={blogpost} />
       </div>
       <div className="flex flex-wrap">
         {tags.map((tag) => {
           return (
-            <p key={tag} className="mr-4 mb-0">
+            <p key={tag} className="mr-4 my-4 text-sm sm:text-lg">
               <span
                 className={
                   tagColors[tag.toLowerCase()] ||
@@ -41,6 +44,13 @@ const BlogHeader = ({ title, tags, blogpost }) => {
             </p>
           );
         })}
+      </div>
+      <div className="flex gap-2 items-center justify-start font-bold">
+        <AiOutlineClockCircle />
+        <p className={`!m-0 text-sm`}>{getReadingTime(content)}</p>
+        &nbsp;|&nbsp;
+        <AiOutlineCalendar />
+        <p className="!m-0 text-sm">{timeSince(time)}</p>
       </div>
     </>
   );

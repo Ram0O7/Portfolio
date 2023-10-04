@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { Comment } from "@/models/BlogPost";
 import connectToDatabase from "@/utils/db";
-import mongoose from "mongoose";
 import { redis } from "@/utils/redis";
 
 export async function POST(request, { params }) {
@@ -31,7 +30,6 @@ export async function POST(request, { params }) {
 }
 export async function GET(request, { params }) {
   const { slug } = params;
-  await connectToDatabase();
   const redisKey = slug + ":comments";
   try {
     const commentsCache = await redis.lrange(redisKey, 0, -1);
@@ -42,6 +40,7 @@ export async function GET(request, { params }) {
         comments: commentsArray,
       });
     }
+    await connectToDatabase();
     const result = await Comment.find({ blogSlug: slug }).select([
       "content",
       "user",

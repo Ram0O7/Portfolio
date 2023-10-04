@@ -21,13 +21,20 @@ export async function generateMetadata({ params }) {
   // read route params
   const slug = params.slug;
 
-  // fetch data
-  const blog = await getBlog(slug);
-
-  return {
-    title: blog.title,
-    description: blog.description,
-  };
+  try {
+    // fetch individual blogs pages using the slug param
+    const blog = await getBlog(slug);
+    return {
+      title: blog.title,
+      description: blog.description,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      title: "Not Found",
+      description: "The page you are looking for does not exist.",
+    };
+  }
 }
 
 export async function generateStaticParams() {
@@ -92,8 +99,14 @@ export default async function Page({ params }) {
 
   return (
     <BlogWrapper>
-      <BlogHeader title={blog.title} tags={blog.tags} blogpost={params.slug} />
-      <HeaderImg img={blog.image} src={blog.source} metadata={blog.metadata} />
+      <BlogHeader
+        title={blog.title}
+        tags={blog.tags}
+        blogpost={params.slug}
+        content={blog.content}
+        time={blog._createdAt}
+      />
+      <HeaderImg img={blog.image} metadata={blog.metadata} alt={blog.alt} />
       <PortableText value={blog.content} components={components} />
       <Comment blogpost={params.slug} />
     </BlogWrapper>
