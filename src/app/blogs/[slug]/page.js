@@ -105,6 +105,7 @@ export default async function Page({ params }) {
         blogpost={params.slug}
         content={blog.content}
         time={blog._createdAt}
+        slug={params.slug}
       />
       <HeaderImg img={blog.image} metadata={blog.metadata} alt={blog.alt} />
       <PortableText value={blog.content} components={components} />

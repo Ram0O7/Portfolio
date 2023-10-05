@@ -10,7 +10,7 @@ export const size = {
 export const alt = "Blog | Ramkrishn Rai";
 export const contentType = "image/png";
 
-export default async function og({ params }) {
+export default async function Image({ params }) {
   const slug = params.slug;
   const blog = await getBlog(slug);
 

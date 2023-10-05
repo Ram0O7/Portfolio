@@ -2,8 +2,10 @@ import getReadingTime from "@/lib/getReadingTime";
 import Like from "./Like/Like";
 import { timeSince } from "@/lib/DateFromatted";
 import { AiOutlineClockCircle, AiOutlineCalendar } from "react-icons/ai";
+import ShareOptions from "@/lib/ShareOptions";
+import { baseURL } from "../../../config";
 
-const BlogHeader = ({ title, tags, blogpost, content, time }) => {
+const BlogHeader = ({ title, tags, blogpost, content, time, slug }) => {
   const tagColors = {
     javascript: "text-yellow-500",
     html: "text-red-500",
@@ -45,12 +47,15 @@ const BlogHeader = ({ title, tags, blogpost, content, time }) => {
           );
         })}
       </div>
-      <div className="flex gap-2 items-center justify-start font-bold">
-        <AiOutlineClockCircle />
-        <p className={`!m-0 text-sm`}>{getReadingTime(content)}</p>
-        &nbsp;|&nbsp;
-        <AiOutlineCalendar />
-        <p className="!m-0 text-sm">{timeSince(time)}</p>
+      <div className="flex flex-wrap justify-between items-center gap-4">
+        <div className="flex gap-2 items-center justify-start font-bold">
+          <AiOutlineClockCircle />
+          <p className={`!m-0 text-sm`}>{getReadingTime(content)}</p>
+          &nbsp;|&nbsp;
+          <AiOutlineCalendar />
+          <p className="!m-0 text-sm">{timeSince(time)}</p>
+        </div>
+        <ShareOptions url={`${baseURL}/blogs/${slug}`} />
       </div>
     </>
   );
