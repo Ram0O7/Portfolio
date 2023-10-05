@@ -28,8 +28,10 @@ export default async function ShowBlogs({ blogs }) {
               <span className="text-xs text-text-primary">
                 {isoToLongDateString(blog._createdAt)}
               </span>
-              <h1 className="text-2xl sm:text-3xl">{blog.title}</h1>
-              <p className="text-sm text-text-primary">{blog.description}</p>
+              <h1 className="text-xl font-bold sm:text-3xl">{blog.title}</h1>
+              <p className="text-xs sm:text-sm text-text-primary">
+                {blog.description}
+              </p>
             </div>
           </Link>
         );

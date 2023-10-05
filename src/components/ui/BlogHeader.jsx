@@ -33,7 +33,7 @@ const BlogHeader = ({ title, tags, blogpost, content, time, slug }) => {
       <div className="flex flex-wrap">
         {tags.map((tag) => {
           return (
-            <p key={tag} className="mr-4 my-4 text-sm sm:text-lg">
+            <p key={tag} className="mr-4 my-4 text-xs sm:text-sm">
               <span
                 className={
                   tagColors[tag.toLowerCase()] ||
@@ -50,10 +50,10 @@ const BlogHeader = ({ title, tags, blogpost, content, time, slug }) => {
       <div className="flex flex-wrap justify-between items-center gap-4">
         <div className="flex gap-2 items-center justify-start font-bold">
           <AiOutlineClockCircle />
-          <p className={`!m-0 text-sm`}>{getReadingTime(content)}</p>
+          <p className={`!m-0 text-xs`}>{getReadingTime(content)}</p>
           &nbsp;|&nbsp;
           <AiOutlineCalendar />
-          <p className="!m-0 text-sm">{timeSince(time)}</p>
+          <p className="!m-0 text-xs">{timeSince(time)}</p>
         </div>
         <ShareOptions url={`${baseURL}/blogs/${slug}`} />
       </div>

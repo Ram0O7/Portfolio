@@ -3,8 +3,6 @@ import { useThemeContext } from "@/context/ThemeContext";
 import {
   FacebookShareButton,
   FacebookIcon,
-  PinterestShareButton,
-  PinterestIcon,
   RedditShareButton,
   RedditIcon,
   WhatsappShareButton,
@@ -32,29 +30,26 @@ export default function ShareOptions({ url }) {
   return (
     <div className="flex gap-2">
       <FacebookShareButton url={url}>
-        <FacebookIcon size={36} round />
+        <FacebookIcon size={28} round />
       </FacebookShareButton>
-      <PinterestShareButton url={url}>
-        <PinterestIcon size={36} round />
-      </PinterestShareButton>
       <RedditShareButton url={url}>
-        <RedditIcon size={36} round />
+        <RedditIcon size={28} round />
       </RedditShareButton>
       <WhatsappShareButton url={url}>
-        <WhatsappIcon size={36} round />
+        <WhatsappIcon size={28} round />
       </WhatsappShareButton>
       <LinkedinShareButton url={url}>
-        <LinkedinIcon size={36} round />
+        <LinkedinIcon size={28} round />
       </LinkedinShareButton>
       <TelegramShareButton url={url}>
-        <TelegramIcon size={36} round />
+        <TelegramIcon size={28} round />
       </TelegramShareButton>
       <button
         className="rounded-full"
         title="copy link"
         onClick={copyToClipboard}
       >
-        <AiOutlineLink className="text-3xl" />
+        <AiOutlineLink className="text-2xl" />
       </button>
       <ToastContainer theme={mode} autoClose={2000} />
     </div>
