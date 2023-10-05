@@ -32,29 +32,29 @@ export default function ShareOptions({ url }) {
   return (
     <div className="flex gap-2">
       <FacebookShareButton url={url}>
-        <FacebookIcon size={28} round />
+        <FacebookIcon size={36} round />
       </FacebookShareButton>
       <PinterestShareButton url={url}>
-        <PinterestIcon size={28} round />
+        <PinterestIcon size={36} round />
       </PinterestShareButton>
       <RedditShareButton url={url}>
-        <RedditIcon size={28} round />
+        <RedditIcon size={36} round />
       </RedditShareButton>
       <WhatsappShareButton url={url}>
-        <WhatsappIcon size={28} round />
+        <WhatsappIcon size={36} round />
       </WhatsappShareButton>
       <LinkedinShareButton url={url}>
-        <LinkedinIcon size={28} round />
+        <LinkedinIcon size={36} round />
       </LinkedinShareButton>
       <TelegramShareButton url={url}>
-        <TelegramIcon size={28} round />
+        <TelegramIcon size={36} round />
       </TelegramShareButton>
       <button
         className="rounded-full"
         title="copy link"
         onClick={copyToClipboard}
       >
-        <AiOutlineLink className="text-2xl" />
+        <AiOutlineLink className="text-3xl" />
       </button>
       <ToastContainer theme={mode} autoClose={2000} />
     </div>
