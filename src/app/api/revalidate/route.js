@@ -2,7 +2,7 @@ import { revalidatePath } from "next/cache";
 
 export async function GET(request) {
   const path = request.nextUrl.searchParams.get("path");
-  console.log(path);
+
   if (path) {
     revalidatePath(path);
     return Response.json({ revalidated: true, now: Date.now() });

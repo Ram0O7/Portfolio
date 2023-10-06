@@ -1,5 +1,4 @@
 "use client";
-import { useThemeContext } from "@/context/ThemeContext";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -13,17 +12,15 @@ import {
   TelegramIcon,
 } from "next-share";
 import { AiOutlineLink } from "react-icons/ai";
-import { ToastContainer, toast } from "react-toastify";
 
 export default function ShareOptions({ url }) {
-  const { mode } = useThemeContext();
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(url);
-      toast.info("link copied to clipboard!");
+      alert("link copied to clipboard!");
     } catch (err) {
       console.error("Failed to copy!", err);
-      toast.error("failed to copy!");
+      alert("failed to copy!");
     }
   };
 
@@ -51,7 +48,6 @@ export default function ShareOptions({ url }) {
       >
         <AiOutlineLink className="text-2xl" />
       </button>
-      <ToastContainer theme={mode} autoClose={2000} />
     </div>
   );
 }

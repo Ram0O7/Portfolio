@@ -77,71 +77,52 @@ export default function Comment({ blogpost }) {
       className={`py-8 lg:py-16 mt-16 flex flex-col gap-4 border-t border-${theme}-txt`}
     >
       <h1 className="text-4xl sm:text-5xl lg:text-6xl">Comments</h1>
-      {status === "authenticated" ? (
-        <div className="commentBody flex flex-col gap-8 py-8">
-          {comments.length === 0 && (
-            <p className={`text-center text-sm text-${theme}-txt/70`}>
-              no comments to show, be the first to comment something on this
-              post.
-              <span className="text-lg">&#128525;</span>
-            </p>
-          )}
-          {loading && <h2 className="text-center font-bold">Loading...</h2>}
-          {comments.map((comment) => {
-            const { content, user, updatedAt, _id } = comment;
-            return (
-              <motion.div
-                initial={{ y: 20 }}
-                animate={{ y: 0 }}
-                className="flex flex-col gap-1"
-                key={_id || content}
-              >
-                <div className="comment-info flex gap-2 items-center">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                    <Image
-                      src={user?.image}
-                      alt={user?.name}
-                      width={48}
-                      height={48}
-                      className="object-cover !m-0"
-                    />
-                  </div>
-                  <p className="text-sm uppercase !m-0 font-bold">
-                    {user.name}
-                  </p>
-                  <p className={`text-xs text-${theme}-txt/70`}>
-                    {timeSince(updatedAt)}
-                  </p>
-                  {session?.user.email === user.email && (
-                    <button
-                      onClick={() => handleDelete(_id)}
-                      name="button"
-                      className={`uppercase ml-auto text-sm tracking-wide text-${theme}-txt/70 hover:text-inherit`}
-                    >
-                      <FaTrash />
-                    </button>
-                  )}
-                </div>
-                <p className="!m-0">{content}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      ) : (
-        <div className=" commentBody flex flex-col justify-center items-center">
-          <p className={`text-sm text-center text-${theme}-txt/70`}>
-            you need to be signed in, In order to like, view or add comments to
-            this blogpost.
-            <span className="text-lg">&#128546;</span>
-            <span
-              className={`text-${theme}-accent text-sm ml-1 hover:underline`}
-              onClick={() => signIn()}
-            >
-              sign in
-            </span>
+      <div className="commentBody flex flex-col gap-8 py-8">
+        {comments.length === 0 && !loading && (
+          <p className={`text-center text-sm text-${theme}-txt/70`}>
+            no comments to show, be the first to comment something on this post.
+            <span className="text-lg">&#128525;</span>
           </p>
-        </div>
-      )}
+        )}
+        {loading && <h2 className="text-center font-bold">Loading...</h2>}
+        {comments.map((comment) => {
+          const { content, user, updatedAt, _id } = comment;
+          return (
+            <motion.div
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              className="flex flex-col gap-1"
+              key={_id || content}
+            >
+              <div className="comment-info flex gap-2 items-center">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                  <Image
+                    src={user?.image}
+                    alt={user?.name}
+                    width={48}
+                    height={48}
+                    className="object-cover !m-0"
+                  />
+                </div>
+                <p className="text-sm uppercase !m-0 font-bold">{user.name}</p>
+                <p className={`text-xs text-${theme}-txt/70`}>
+                  {timeSince(updatedAt)}
+                </p>
+                {session?.user.email === user.email && (
+                  <button
+                    onClick={() => handleDelete(_id)}
+                    name="button"
+                    className={`uppercase ml-auto text-sm tracking-wide text-${theme}-txt/70 hover:text-inherit`}
+                  >
+                    <FaTrash />
+                  </button>
+                )}
+              </div>
+              <p className="!m-0">{content}</p>
+            </motion.div>
+          );
+        })}
+      </div>
       <form
         action="submit"
         className="flex flex-col gap-5 text-sm font-bold"

@@ -1,5 +1,4 @@
 import getReadingTime from "@/lib/getReadingTime";
-import Like from "./Like/Like";
 import { timeSince } from "@/lib/DateFromatted";
 import { AiOutlineClockCircle, AiOutlineCalendar } from "react-icons/ai";
 import ShareOptions from "@/lib/ShareOptions";
@@ -25,15 +24,12 @@ const BlogHeader = ({ title, tags, blogpost, content, time, slug }) => {
   const keys = Object.keys(tagColors);
 
   return (
-    <>
-      <div className="flex items-center justify-between gap-2">
-        <h1 className="!m-0">{title}</h1>
-        <Like blogpost={blogpost} />
-      </div>
-      <div className="flex flex-wrap">
+    <div className="flex flex-col gap-4">
+      <h1>{title}</h1>
+      <div className="flex flex-wrap gap-2">
         {tags.map((tag) => {
           return (
-            <p key={tag} className="mr-4 my-4 text-xs sm:text-sm">
+            <p key={tag} className="my-0 text-xs sm:text-sm">
               <span
                 className={
                   tagColors[tag.toLowerCase()] ||
@@ -57,7 +53,7 @@ const BlogHeader = ({ title, tags, blogpost, content, time, slug }) => {
         </div>
         <ShareOptions url={`${baseURL}/blogs/${slug}`} />
       </div>
-    </>
+    </div>
   );
 };
 
