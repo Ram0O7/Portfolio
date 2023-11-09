@@ -5,7 +5,7 @@ export default function Loading() {
   return (
     <div>
       <Box sx={{ width: "100%" }}>
-        <LinearProgress color="success" />
+        <LinearProgress color="info" />
       </Box>
     </div>
   );
