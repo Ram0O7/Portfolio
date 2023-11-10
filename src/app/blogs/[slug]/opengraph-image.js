@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import getReadingTime from "@/lib/getReadingTime";
 import { ImageResponse } from "next/server";
 import { getBlog } from "../fetchBolgs";
-import { timeSince } from "@/lib/DateFromatted";
+
 export const size = {
   width: 1200,
   height: 630,
 };
+
 export const alt = "Blog | Ramkrishn Rai";
 export const contentType = "image/png";
 
