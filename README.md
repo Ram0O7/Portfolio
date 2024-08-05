@@ -1,34 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ramkrishn Rai - Personal Portfolio
 
-## Getting Started
+## Description
+This is my personal portfolio website built using Next.js, Tailwind CSS, MongoDB, Redis, Sanity.io, and Express. It showcases my skills, experience, and projects as a web developer, along with providing a platform for potential clients to contact me.
 
-First, run the development server:
+## Table of Contents
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Features](#features)
+4. [Contributing](#contributing)
+5. [Credits](#credits)
+6. [Contact](#contact)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Prerequisites
+- Node.js and npm installed
+- MongoDB instance
+- Redis instance
+- Sanity.io account and project
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Steps
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/Ram0O7/portfolio.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd portfolio
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
+4. Set up environment variables:
+    - Create a `.env` file in the root directory
+    - Add the following environment variables:
+      ```env
+      MONGODB_URI=your-mongodb-uri
+      REDIS_URL=your-redis-url
+      SANITY_PROJECT_ID=your-sanity-project-id
+      SANITY_DATASET=your-sanity-dataset
+      ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+5. Run the development server:
+    ```sh
+    npm run dev
+    ```
+6. Open your browser and navigate to `http://localhost:3000`.
 
-## Learn More
+## Usage
+- **Home Page:** Displays an introduction and my skills.
+- **Projects:** Lists my projects with descriptions and links.
+- **Contact:** Form for visitors to reach out to me.
 
-To learn more about Next.js, take a look at the following resources:
+## Features
+- Responsive design with Tailwind CSS.
+- Dynamic content fetched from MongoDB and Sanity.io.
+- Fast and efficient data caching using Redis.
+- Server-side rendering with Next.js for improved performance.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch:
+    ```sh
+    git checkout -b feature/your-feature-name
+    ```
+3. Make your changes and commit them:
+    ```sh
+    git commit -m 'Add some feature'
+    ```
+4. Push to the branch:
+    ```sh
+    git push origin feature/your-feature-name
+    ```
+5. Open a pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Credits
+- **Ramkrishn Rai:** Developer and maintainer.
+- **Technologies Used:** Next.js, Tailwind CSS, MongoDB, Redis, Sanity.io, Express.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contact
+Feel free to get in touch with me with any query related to the project. I'll be glad to be of your service.
+- [**Email**](ram706860@gmail.com)
+- [**LinkedIn**](https://www.linkedin.com/in/ramkrishn-rai/)
